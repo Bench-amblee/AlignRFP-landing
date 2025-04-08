@@ -4,11 +4,35 @@ import { Bot, Shield, Zap, MessageSquare, CheckCircle, ArrowRight } from 'lucide
 function App() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setEmail('');
+    setSubmitting(true);
+    setError('');
+    
+    try {
+      const response = await fetch("https://formspree.io/f/moveprwo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+      
+      if (response.ok) {
+        setSubmitted(true);
+        setEmail('');
+      } else {
+        const data = await response.json();
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -24,30 +48,38 @@ function App() {
             Harness the power of AI to generate winning RFP responses that perfectly align with your company's voice and values.
           </p>
 
-          {/* Email Collection */}
+          {/* Email Collection - Now with Formspree Integration */}
           <div className="max-w-md mx-auto mb-16">
-            <form onSubmit={handleSubmit} className="flex gap-2">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email for early access"
-                className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                required
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-colors duration-200 flex items-center gap-2"
-              >
-                Join Waitlist
-                <ArrowRight size={20} />
-              </button>
-            </form>
-            {submitted && (
-              <p className="mt-2 text-secondary flex items-center justify-center gap-2">
-                <CheckCircle size={20} />
-                Thanks! We'll notify you when we launch.
-              </p>
+            {!submitted ? (
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email for early access"
+                  className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  required
+                />
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
+                >
+                  {submitting ? 'Submitting...' : 'Join Waitlist'}
+                  {!submitting && <ArrowRight size={20} />}
+                </button>
+                {error && (
+                  <p className="mt-2 text-red-500 text-sm">{error}</p>
+                )}
+              </form>
+            ) : (
+              <div className="p-4 bg-green-50 rounded-lg border border-green-100">
+                <p className="text-green-700 flex items-center justify-center gap-2">
+                  <CheckCircle size={20} />
+                  Thanks! We'll notify you when we launch.
+                </p>
+              </div>
             )}
           </div>
         </div>
@@ -86,11 +118,20 @@ function App() {
           />
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-50 border-t border-gray-200 mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center text-gray-600">
+            <p>© 2024 AlignRFP. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
 
-function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
+function FeatureCard({ icon, title, description }) {
   return (
     <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200">
       <div className="mb-4">{icon}</div>

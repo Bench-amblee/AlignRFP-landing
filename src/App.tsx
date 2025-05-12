@@ -55,7 +55,7 @@ function App() {
             <div className="flex items-center">
               {/* Logo from file */}
               <img src="/AlignRFP_logo3.svg" alt="AlignRFP Logo" className="h-10 w-auto mr-2" />
-              <span className="text-xl font-bold text-gray-900">alignRFP</span>
+              <span className="text-xl font-bold text-gray-900">AlignRFP</span>
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@ function App() {
           
           <h1 className="text-5xl font-bold text-gray-900 mb-6 animate-slideUp">
             Create RFP Responses That Reflect Your Voice with
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"> alignRFP</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"> AlignRFP</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto animate-slideUp animate-delay-100">
             Harness the power of AI to generate winning RFP responses that perfectly align with your company's voice and values.
@@ -145,7 +145,7 @@ function App() {
 
         {/* How It Works Section */}
         <div className="mt-24">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">How alignRFP Works</h2>
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">How AlignRFP Works</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <ProcessStep 
               number="1"
@@ -179,7 +179,7 @@ function App() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Remembers Your Company Voice</h3>
-                  <p className="text-gray-600">alignRFP learns your unique company voice and messaging patterns, ensuring every response feels authentically yours.</p>
+                  <p className="text-gray-600">AlignRFP learns your unique company voice and messaging patterns, ensuring every response feels authentically yours.</p>
                 </div>
               </div>
               
@@ -199,7 +199,7 @@ function App() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Project Memory</h3>
-                  <p className="text-gray-600">alignRFP remembers all your past projects, making it easy to reference previous successful responses and adapt them for new opportunities.</p>
+                  <p className="text-gray-600">AlignRFP remembers all your past projects, making it easy to reference previous successful responses and adapt them for new opportunities.</p>
                 </div>
               </div>
             </div>
@@ -239,20 +239,20 @@ function App() {
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Frequently Asked Questions</h2>
           <div className="space-y-6 max-w-3xl mx-auto">
             <FAQItem 
-              question="How does alignRFP ensure accuracy in responses?"
-              answer="alignRFP combines advanced AI with your company's historical data to ensure responses are accurate and aligned with your voice. Our quality checks verify technical accuracy and compliance with RFP requirements."
+              question="How does AlignRFP ensure accuracy in responses?"
+              answer="AlignRFP combines advanced AI with your company's historical data to ensure responses are accurate and aligned with your voice. Our quality checks verify technical accuracy and compliance with RFP requirements."
             />
             <FAQItem 
               question="Is my company data secure on the platform?"
               answer="Absolutely. We implement bank-grade encryption and security protocols. Your data is never shared, and you maintain complete ownership of all content generated on our platform."
             />
             <FAQItem 
-              question="How much time can alignRFP save my team?"
+              question="How much time can AlignRFP save my team?"
               answer="Most companies report saving 50-70% of the time typically spent on RFP responses. Teams that previously spent 40+ hours on complex RFPs now complete them in 10-15 hours."
             />
             <FAQItem 
-              question="Can alignRFP integrate with our existing tools?"
-              answer="Yes, alignRFP offers integrations with popular platforms including Salesforce, Microsoft Office, Google Workspace, and more. We also provide API access for custom integrations."
+              question="Can AlignRFP integrate with our existing tools?"
+              answer="Yes, AlignRFP offers integrations with popular platforms including Salesforce, Microsoft Office, Google Workspace, and more. We also provide API access for custom integrations."
             />
           </div>
         </div>
@@ -298,8 +298,8 @@ function App() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-6 md:mb-0">
               {/* Footer Logo */}
-              <img src="/AlignRFP_logo3.svg" alt="alignRFP Logo" className="h-8 w-auto mr-2" />
-              <span className="text-lg font-semibold text-gray-900">alignRFP</span>
+              <img src="/AlignRFP_logo3.svg" alt="AlignRFP Logo" className="h-8 w-auto mr-2" />
+              <span className="text-lg font-semibold text-gray-900">AlignRFP</span>
             </div>
             <div className="flex space-x-6">
               <a href="#" className="text-gray-500 hover:text-primary">Privacy Policy</a>
@@ -308,7 +308,7 @@ function App() {
             </div>
           </div>
           <div className="mt-8 text-center text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} alignRFP. All rights reserved.
+            &copy; {new Date().getFullYear()} AlignRFP. All rights reserved.
           </div>
         </div>
       </footer>

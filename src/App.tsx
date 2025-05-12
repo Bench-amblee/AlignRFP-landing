@@ -298,7 +298,7 @@ function App() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-6 md:mb-0">
               {/* Footer Logo */}
-              <img src="/AlignRFP_logo3.svg" alt="AlignRFP Logo" className="h-8 w-auto mr-2" />
+              <img src="/alignRFP_logo3.svg" alt="AlignRFP Logo" className="h-8 w-auto mr-2" />
               <span className="text-lg font-semibold text-gray-900">AlignRFP</span>
             </div>
             <div className="flex space-x-6">

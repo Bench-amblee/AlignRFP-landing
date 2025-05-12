@@ -54,10 +54,7 @@ function App() {
           <div className="flex items-center">
             <div className="flex items-center">
               {/* Logo from file with PNG fallback */}
-              <picture>
-                <source srcSet="/alignRFP_logo3.svg" type="image/svg+xml" />
                 <img src="/alignRFP_logo3.png" alt="AlignRFP Logo" className="h-10 w-auto mr-2" />
-              </picture>
               <span className="text-xl font-bold text-gray-900">AlignRFP</span>
             </div>
           </div>
@@ -301,10 +298,7 @@ function App() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-6 md:mb-0">
               {/* Footer Logo */}
-              <picture>
-                <source srcSet="/alignRFP_logo3.svg" type="image/svg+xml" />
                 <img src="/alignRFP_logo3.png" alt="AlignRFP Logo" className="h-8 w-auto mr-2" />
-              </picture>
               <span className="text-lg font-semibold text-gray-900">AlignRFP</span>
             </div>
             <div className="flex space-x-6">

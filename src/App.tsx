@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Bot, Shield, Zap, MessageSquare, CheckCircle, ArrowRight, FileText, PieChart, Users } from 'lucide-react';
+import logo from '../assets/alignRFP_logo3.svg';
+
 
 function App() {
   const [email, setEmail] = useState('');
@@ -53,7 +55,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center">
             <div className="flex items-center">
-              <img src="alignRFP_logo3.png" alt="AlignRFP logo" className="h-8 w-8 mr-2" />
+              <img src={logo} alt="AlignRFP logo" className="h-8 w-8 mr-2" />
               <span className="text-xl font-bold text-gray-900">AlignRFP</span>
             </div>
           </div>
@@ -297,7 +299,7 @@ function App() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-6 md:mb-0">
               {/* Footer Logo */}
-              <img src="alignRFP_logo3.png" alt="AlignRFP logo" className="h-8 w-8 mr-2" />
+              <img src={logo} alt="AlignRFP logo" className="h-8 w-8 mr-2" />
               <span className="text-lg font-semibold text-gray-900">AlignRFP</span>
             </div>
             <div className="flex space-x-6">

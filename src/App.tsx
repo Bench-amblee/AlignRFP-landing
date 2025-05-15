@@ -240,7 +240,7 @@ function App() {
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Frequently Asked Questions</h2>
           <div className="space-y-6 max-w-3xl mx-auto">
             <FAQItem 
-              question="What makes AlignRFP different from other RFP automation tools"
+              question="What makes AlignRFP different from other RFP automation tools?"
               answer="AlignRFP is built for personalization at scale. Unlike generic AI tools, we learn your company’s tone, strengths, and past responses to create tailored answers that feel human, not templated."
             />
             <FAQItem 

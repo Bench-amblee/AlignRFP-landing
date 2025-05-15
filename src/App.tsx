@@ -55,8 +55,10 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center">
             <div className="flex items-center">
-              <img src={logo} alt="AlignRFP logo" className="h-8 w-8 mr-2" />
-              <span className="text-xl font-bold text-gray-900">AlignRFP</span>
+              <a href="/" className="flex items-center text-2xl font-bold no-underline whitespace-nowrap">
+                <img src={logo} alt="AlignRFP logo" className="h-8 w-8 mr-2" />
+                <span className="font-inter text-black">AlignRFP</span>
+              </a>
             </div>
           </div>
         </div>

@@ -240,6 +240,10 @@ function App() {
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Frequently Asked Questions</h2>
           <div className="space-y-6 max-w-3xl mx-auto">
             <FAQItem 
+              question="What makes AlignRFP different from other RFP automation tools"
+              answer="AlignRFP is built for personalization at scale. Unlike generic AI tools, we learn your company’s tone, strengths, and past responses to create tailored answers that feel human, not templated."
+            />
+            <FAQItem 
               question="How does AlignRFP ensure accuracy in responses?"
               answer="AlignRFP combines advanced AI with your company's historical data to ensure responses are accurate and aligned with your voice. Our quality checks verify technical accuracy and compliance with RFP requirements."
             />
@@ -250,10 +254,6 @@ function App() {
             <FAQItem 
               question="How much time can AlignRFP save my team?"
               answer="Most companies report saving 50-70% of the time typically spent on RFP responses. Teams that previously spent 40+ hours on complex RFPs now complete them in 10-15 hours."
-            />
-            <FAQItem 
-              question="Can AlignRFP integrate with our existing tools?"
-              answer="Yes, AlignRFP offers integrations with popular platforms including Salesforce, Microsoft Office, Google Workspace, and more. We also provide API access for custom integrations."
             />
           </div>
         </div>

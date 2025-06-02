@@ -5,7 +5,7 @@ const TermsOfService: React.FC = () => {
     <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <header className="mb-10">
         <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Terms of Service</h1>
-        <p className="mt-2 text-lg text-gray-600">Last updated: October 26, 2023</p>
+        <p className="mt-2 text-lg text-gray-600">Last updated: June 2, 2025</p>
       </header>
       <div className="prose prose-lg text-gray-700">
         <p>Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the AlignRFP website and application (the "Service") operated by AlignRFP ("us", "we", or "our").</p>

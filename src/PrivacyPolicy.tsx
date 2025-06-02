@@ -5,7 +5,7 @@ const PrivacyPolicy: React.FC = () => {
     <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <header className="mb-10">
         <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Privacy Policy</h1>
-        <p className="mt-2 text-lg text-gray-600">Last updated: October 26, 2023</p>
+        <p className="mt-2 text-lg text-gray-600">Last updated: June 2, 2025</p>
       </header>
       <div className="prose prose-lg text-gray-700">
         <p>AlignRFP ("us", "we", or "our") operates the AlignRFP website and application (the "Service"). This Privacy Policy informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.</p>

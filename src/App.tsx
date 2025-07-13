@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import { Bot, Shield, Zap, MessageSquare, CheckCircle, ArrowRight, FileText, PieChart, Users, Clock, Brain, Edit } from 'lucide-react';
-import logo from '../assets/alignRFP_logo7.svg';
+import { Bot, Shield, Zap, MessageSquare, CheckCircle, ArrowRight, FileText, PieChart, Users } from 'lucide-react';
+import logo from '../assets/alignRFP_logo3.svg';
 
-// Import page components
-import PrivacyPolicy from './PrivacyPolicy';
-import TermsOfService from './TermsOfService';
-import ContactUs from './ContactUs';
 
-// MainLayout component to hold the landing page content
-const MainLayout: React.FC = () => {
+function App() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -26,7 +20,7 @@ const MainLayout: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     setError('');
@@ -47,7 +41,7 @@ const MainLayout: React.FC = () => {
         const data = await response.json();
         throw new Error(data.error || 'Something went wrong. Please try again.');
       }
-    } catch (err: any) {
+    } catch (err) {
       setError(err.message || 'Something went wrong. Please try again.');
     } finally {
       setSubmitting(false);
@@ -60,10 +54,12 @@ const MainLayout: React.FC = () => {
       <nav className="bg-white shadow-soft py-4 relative z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center text-2xl font-bold no-underline whitespace-nowrap">
-              <img src={logo} alt="AlignRFP logo" className="h-8 w-8 mr-2" />
-              <span className="font-sans text-charcoal-900">AlignRFP</span>
-            </Link>
+            <div className="flex items-center">
+              <a href="/" className="flex items-center text-2xl font-bold no-underline whitespace-nowrap">
+                <img src={logo} alt="AlignRFP logo" className="h-8 w-8 mr-2" />
+                <span className="font-inter text-black">AlignRFP</span>
+              </a>
+            </div>
           </div>
         </div>
       </nav>
@@ -351,9 +347,9 @@ const MainLayout: React.FC = () => {
               <span className="text-lg font-semibold text-charcoal-900">AlignRFP</span>
             </div>
             <div className="flex space-x-6">
-              <Link to="/privacy-policy" className="text-charcoal-500 hover:text-primary-500 transition-colors">Privacy Policy</Link>
-              <Link to="/terms-of-service" className="text-charcoal-500 hover:text-primary-500 transition-colors">Terms of Service</Link>
-              <Link to="/contact-us" className="text-charcoal-500 hover:text-primary-500 transition-colors">Contact Us</Link>
+              <a href="#" className="text-gray-500 hover:text-primary">Privacy Policy</a>
+              <a href="#" className="text-gray-500 hover:text-primary">Terms of Service</a>
+              <a href="#" className="text-gray-500 hover:text-primary">Contact Us</a>
             </div>
           </div>
           <div className="mt-8 text-center text-charcoal-500 text-sm">
@@ -363,18 +359,11 @@ const MainLayout: React.FC = () => {
       </footer>
     </div>
   );
-};
-
-// Helper Components
-interface FeatureCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
 }
 
-function FeatureCard({ icon, title, description }: FeatureCardProps) {
+function FeatureCard({ icon, title, description }) {
   const [isVisible, setIsVisible] = useState(false);
-  const [elementRef, setElementRef] = useState<HTMLDivElement | null>(null);
+  const [elementRef, setElementRef] = useState(null);
 
   useEffect(() => {
     if (!elementRef) return;
@@ -392,7 +381,7 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
     observer.observe(elementRef);
     
     return () => {
-      if (elementRef) observer.unobserve(elementRef);
+      if (elementRef) observer.unobserve(elementRef); // Check if elementRef is not null
     };
   }, [elementRef]);
 
@@ -414,16 +403,9 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
   );
 }
 
-interface ProcessStepProps {
-  number: string;
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}
-
-function ProcessStep({ number, icon, title, description }: ProcessStepProps) {
+function ProcessStep({ number, icon, title, description }) {
   const [isVisible, setIsVisible] = useState(false);
-  const [elementRef, setElementRef] = useState<HTMLDivElement | null>(null);
+  const [elementRef, setElementRef] = useState(null);
 
   useEffect(() => {
     if (!elementRef) return;
@@ -441,7 +423,7 @@ function ProcessStep({ number, icon, title, description }: ProcessStepProps) {
     observer.observe(elementRef);
     
     return () => {
-      if (elementRef) observer.unobserve(elementRef);
+      if (elementRef) observer.unobserve(elementRef); // Check if elementRef is not null
     };
   }, [elementRef]);
 
@@ -505,28 +487,10 @@ function MemoryFeature({ icon, title, description }: MemoryFeatureProps) {
   );
 }
 
-interface MemoryItemProps {
-  text: string;
-}
-
-function MemoryItem({ text }: MemoryItemProps) {
-  return (
-    <li className="flex items-center gap-2">
-      <CheckCircle className="text-success-500" size={16} />
-      <span>{text}</span>
-    </li>
-  );
-}
-
-interface FAQItemProps {
-  question: string;
-  answer: string;
-}
-
-function FAQItem({ question, answer }: FAQItemProps) {
+function FAQItem({ question, answer }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [elementRef, setElementRef] = useState<HTMLDivElement | null>(null);
+  const [elementRef, setElementRef] = useState(null);
 
   useEffect(() => {
     if (!elementRef) return;
@@ -544,7 +508,7 @@ function FAQItem({ question, answer }: FAQItemProps) {
     observer.observe(elementRef);
     
     return () => {
-      if (elementRef) observer.unobserve(elementRef);
+      if (elementRef) observer.unobserve(elementRef); // Check if elementRef is not null
     };
   }, [elementRef]);
   

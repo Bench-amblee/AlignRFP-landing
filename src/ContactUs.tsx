@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Mail, MessageCircle, Clock } from 'lucide-react';
-import logo from '../assets/alignRFP_logo3.svg';
+import logo from '../assets/alignRFP_logo7.svg';
 
 const ContactUs: React.FC = () => {
   return (

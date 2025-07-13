@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Bot, Shield, Zap, MessageSquare, CheckCircle, ArrowRight, FileText, PieChart, Users } from 'lucide-react';
-import logo from '../assets/alignRFP_logo3.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Bot, Shield, Zap, MessageSquare, CheckCircle, ArrowRight, FileText, PieChart, Users, Brain, Clock, Edit } from 'lucide-react';
+import logo from '../assets/alignRFP_logo7.svg';
+import PrivacyPolicy from './PrivacyPolicy';
+import TermsOfService from './TermsOfService';
+import ContactUs from './ContactUs';
 
 
-function App() {
+function MainLayout() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -20,7 +24,7 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
     setError('');
@@ -41,7 +45,7 @@ function App() {
         const data = await response.json();
         throw new Error(data.error || 'Something went wrong. Please try again.');
       }
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message || 'Something went wrong. Please try again.');
     } finally {
       setSubmitting(false);
@@ -361,7 +365,13 @@ function App() {
   );
 }
 
-function FeatureCard({ icon, title, description }) {
+interface FeatureCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+function FeatureCard({ icon, title, description }: FeatureCardProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [elementRef, setElementRef] = useState(null);
 
@@ -403,7 +413,14 @@ function FeatureCard({ icon, title, description }) {
   );
 }
 
-function ProcessStep({ number, icon, title, description }) {
+interface ProcessStepProps {
+  number: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+function ProcessStep({ number, icon, title, description }: ProcessStepProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [elementRef, setElementRef] = useState(null);
 
@@ -487,7 +504,12 @@ function MemoryFeature({ icon, title, description }: MemoryFeatureProps) {
   );
 }
 
-function FAQItem({ question, answer }) {
+interface FAQItemProps {
+  question: string;
+  answer: string;
+}
+
+function FAQItem({ question, answer }: FAQItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [elementRef, setElementRef] = useState(null);
@@ -543,14 +565,25 @@ function FAQItem({ question, answer }) {
   );
 }
 
+function MemoryItem({ text }: { text: string }) {
+  return (
+    <li className="flex items-center space-x-3">
+      <div className="w-2 h-2 bg-primary-500 rounded-full flex-shrink-0"></div>
+      <span className="text-charcoal-600">{text}</span>
+    </li>
+  );
+}
+
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<MainLayout />} />
-      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-      <Route path="/terms-of-service" element={<TermsOfService />} />
-      <Route path="/contact-us" element={<ContactUs />} />
-    </Routes>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainLayout />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+      </Routes>
+    </Router>
   );
 }
 

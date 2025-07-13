@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Bot, Shield, Zap, MessageSquare, CheckCircle, ArrowRight, FileText, PieChart, Users, Brain, Clock, Edit } from 'lucide-react';
 import logo from '../assets/alignRFP_logo7.svg';
 import PrivacyPolicy from './PrivacyPolicy';
@@ -351,9 +351,9 @@ function MainLayout() {
               <span className="text-lg font-semibold text-charcoal-900">AlignRFP</span>
             </div>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-500 hover:text-primary">Privacy Policy</a>
-              <a href="#" className="text-gray-500 hover:text-primary">Terms of Service</a>
-              <a href="#" className="text-gray-500 hover:text-primary">Contact Us</a>
+              <Link to="/privacy-policy" className="text-gray-500 hover:text-primary">Privacy Policy</Link>
+              <Link to="/terms-of-service" className="text-gray-500 hover:text-primary">Terms of Service</Link>
+              <Link to="/contact-us" className="text-gray-500 hover:text-primary">Contact Us</Link>
             </div>
           </div>
           <div className="mt-8 text-center text-charcoal-500 text-sm">

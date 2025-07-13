@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Bot, Shield, Zap, MessageSquare, CheckCircle, ArrowRight, FileText, PieChart, Users } from 'lucide-react';
-import logo from '../assets/alignRFP_logo3.svg';
+import { Routes, Route, Link } from 'react-router-dom';
+import { Bot, Shield, Zap, MessageSquare, CheckCircle, ArrowRight, FileText, PieChart, Users, Clock, Brain, Edit } from 'lucide-react';
+import logo from '../assets/alignRFP_logo7.svg';
 
+// Import page components
+import PrivacyPolicy from './PrivacyPolicy';
+import TermsOfService from './TermsOfService';
+import ContactUs from './ContactUs';
 
-function App() {
+// MainLayout component to hold the landing page content
+const MainLayout: React.FC = () => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -20,7 +26,7 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
     setError('');
@@ -41,7 +47,7 @@ function App() {
         const data = await response.json();
         throw new Error(data.error || 'Something went wrong. Please try again.');
       }
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message || 'Something went wrong. Please try again.');
     } finally {
       setSubmitting(false);
@@ -49,201 +55,240 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      {/* Navbar with Logo */}
-      <nav className="bg-white shadow-sm py-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 relative overflow-hidden">
+      {/* Navbar */}
+      <nav className="bg-white shadow-soft py-4 relative z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center">
-            <div className="flex items-center">
-              <a href="/" className="flex items-center text-2xl font-bold no-underline whitespace-nowrap">
-                <img src={logo} alt="AlignRFP logo" className="h-8 w-8 mr-2" />
-                <span className="font-inter text-black">AlignRFP</span>
-              </a>
-            </div>
+            <Link to="/" className="flex items-center text-2xl font-bold no-underline whitespace-nowrap">
+              <img src={logo} alt="AlignRFP logo" className="h-8 w-8 mr-2" />
+              <span className="font-sans text-charcoal-900">AlignRFP</span>
+            </Link>
           </div>
         </div>
       </nav>
       
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16">
-        <div className="text-center">
-          
-          <h1 className="text-5xl font-bold text-gray-900 mb-6 animate-slideUp">
-            Create RFP Responses That Reflect Your Voice with
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"> AlignRFP</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto animate-slideUp animate-delay-100">
-            Harness the power of AI to generate winning RFP responses that perfectly align with your company's voice and values.
-          </p>
-
-          {/* Email Collection - Now with Formspree Integration */}
-          <div className="max-w-md mx-auto mb-16 animate-slideUp animate-delay-200">
-            {!submitted ? (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
-                <input
-                  type="email"
-                  name="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email for early access"
-                  className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  required
-                />
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
-                >
-                  {submitting ? 'Submitting...' : 'Join Waitlist'}
-                  {!submitting && <ArrowRight size={20} />}
-                </button>
-              </form>
-            ) : (
-              <div className="p-4 bg-green-50 rounded-lg border border-green-100">
-                <p className="text-green-700 flex items-center justify-center gap-2">
-                  <CheckCircle size={20} />
-                  Thanks! We'll notify you when we launch.
-                </p>
+      <div className="w-full px-0">
+        <div className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 mb-0 w-full relative overflow-hidden px-4 sm:px-6 lg:px-8">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-600/5 to-success-600/5"></div>
+          <div className="max-w-7xl mx-auto relative z-10">
+            <div className="text-center">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary-600/20 to-success-600/20 rounded-3xl blur-3xl opacity-30 animate-pulse"></div>
+                <h1 className="relative text-5xl md:text-6xl font-bold text-charcoal-900 mb-10 leading-tight animate-slide-up">
+                  Transform Your RFP Process with
+                  <span className="bg-gradient-to-r from-success-600 to-success-800 bg-clip-text text-transparent"> AI-Powered </span>
+                  Proposals
+                </h1>
               </div>
-            )}
-            {error && (
-              <p className="mt-2 text-red-500 text-sm">{error}</p>
-            )}
+              <p className="text-xl md:text-2xl text-charcoal-600 mb-16 leading-relaxed max-w-4xl mx-auto animate-slide-up">
+                Create winning proposals in minutes, not hours. Our AI-powered platform analyzes RFPs, generates tailored responses, and helps you create consistent, client-ready proposals.
+              </p>
+
+              {/* Email Collection */}
+              <div className="max-w-md mx-auto mb-16 animate-slide-up">
+                {!submitted ? (
+                  <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
+                    <input
+                      type="email"
+                      name="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email for early access"
+                      className="flex-1 px-4 py-3 rounded-xl border border-charcoal-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-charcoal-900"
+                      required
+                    />
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-medium hover:shadow-strong transform hover:scale-105"
+                    >
+                      {submitting ? 'Submitting...' : 'Join Waitlist'}
+                      {!submitting && <ArrowRight size={20} />}
+                    </button>
+                  </form>
+                ) : (
+                  <div className="p-4 bg-success-50 rounded-xl border border-success-200 shadow-soft">
+                    <p className="text-success-700 flex items-center justify-center gap-2">
+                      <CheckCircle size={20} />
+                      Thanks! We'll notify you when we launch.
+                    </p>
+                  </div>
+                )}
+                {error && (
+                  <p className="mt-2 text-danger-500 text-sm">{error}</p>
+                )}
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-          <FeatureCard
-            icon={<Bot className="text-primary" size={32} />}
-            title="AI-Powered Generation"
-            description="Leverage advanced AI to create comprehensive RFP responses in minutes, not hours."
-          />
-          <FeatureCard
-            icon={<MessageSquare className="text-primary" size={32} />}
-            title="Voice Alignment"
-            description="Maintain consistent brand voice and messaging across all your proposals."
-          />
-          <FeatureCard
-            icon={<Shield className="text-primary" size={32} />}
-            title="Enterprise Security"
-            description="Bank-grade encryption and security measures to protect your sensitive data."
-          />
-          <FeatureCard
-            icon={<Zap className="text-secondary" size={32} />}
-            title="Lightning Fast"
-            description="Generate responses quickly and efficiently, meeting tight deadlines with ease."
-          />
-          <FeatureCard
-            icon={<CheckCircle className="text-secondary" size={32} />}
-            title="Accuracy Guaranteed"
-            description="AI-assisted quality checks ensure accurate and compliant responses."
-          />
-          <FeatureCard
-            icon={<MessageSquare className="text-secondary" size={32} />}
-            title="Easy Collaboration"
-            description="Seamless team collaboration tools for review and approval workflows."
-          />
-        </div>
-
-        {/* How It Works Section */}
-        <div className="mt-24">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">How AlignRFP Works</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+      {/* How It Works Section */}
+      <div className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 w-full relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-600/5 to-success-600/5"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <div className="relative inline-block">
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary-600/20 to-success-600/20 rounded-2xl blur-2xl opacity-50 animate-pulse"></div>
+              <h2 className="relative text-4xl md:text-5xl font-bold text-charcoal-900 animate-slide-up">
+                How It Works
+              </h2>
+            </div>
+            <p className="text-xl text-charcoal-600 mt-6 max-w-3xl mx-auto">
+              Three simple steps to transform your RFP process and win more contracts
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 relative">
             <ProcessStep 
-              number="1"
-              icon={<FileText className="text-primary" size={32} />}
+              number=""
+              icon={<FileText className="h-12 w-12 text-white" />}
               title="Upload Your RFP"
-              description="Simply upload your RFP document or paste the requirements into our platform."
+              description="Simply upload your RFP document in any common format. Our AI will analyze the requirements, structure, and key components with lightning speed."
             />
             <ProcessStep 
-              number="2"
-              icon={<PieChart className="text-primary" size={32} />}
-              title="AI Analysis"
-              description="Our AI analyzes the requirements and generates responses aligned with your company's voice."
+              number=""
+              icon={<Brain className="h-12 w-12 text-white" />}
+              title="Add Company Details"
+              description="Provide your company details and watch our smart AI match your tone, highlight your experience, and showcase your unique strengths."
             />
             <ProcessStep 
-              number="3"
-              icon={<Users className="text-primary" size={32} />}
-              title="Review & Submit"
-              description="Collaborate with your team to review, refine, and submit winning responses."
+              number=""
+              icon={<CheckCircle className="h-12 w-12 text-white" />}
+              title="Edit & Export"
+              description="Fine-tune your response with our intuitive editor, make it perfect, and export as a professional PDF ready to win that contract."
             />
           </div>
         </div>
+      </div>
 
-        {/* Smart Memory Section */}
-        <div className="mt-24 bg-white rounded-xl p-8 shadow-sm">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Intelligent Memory That Grows With You</h2>
+      {/* Stats Section */}
+      <div className="bg-gradient-to-r from-primary-600 to-success-600 py-20 w-full relative overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full animate-float"></div>
+          <div className="absolute bottom-20 right-20 w-48 h-48 bg-white/5 rounded-full animate-float" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-white/10 rounded-full animate-float" style={{animationDelay: '2s'}}></div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Built for Fast-Moving Teams
+            </h2>
+            <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto">
+              Respond to RFPs faster and spend less time copy and pasting old content. Our AI-powered platform helps you create winning proposals in minutes.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+            <StatCard value="80%" label="Time Saved" description="Average reduction in proposal creation time" />
+            <StatCard value="8+" label="Hours" description="Time saved for each proposal" />
+            <StatCard value="1-Click" label="Access" description="Manage your past projects, differentiators, and skills" />
+            <StatCard value="100%" label="Private" description="Your data is encrypted, never shared, and always under your control" />
+          </div>
+        </div>
+      </div>
+
+      {/* Features Section */}
+      <div className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 w-full relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-600/5 to-success-600/5"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-20">
+            <div className="relative inline-block">
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary-600/20 to-success-600/20 rounded-2xl blur-2xl opacity-50 animate-pulse"></div>
+              <h2 className="relative text-4xl md:text-5xl font-bold text-charcoal-900 mb-6">
+                Why Choose AlignRFP?
+              </h2>
+            </div>
+            <p className="text-xl md:text-2xl text-charcoal-600 max-w-4xl mx-auto leading-relaxed">
+              Save time, improve quality, and win more contracts with our AI-powered RFP response platform.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <FeatureCard
+              icon={<Clock className="h-10 w-10 text-primary-500" />}
+              title="Save 80% of Your Time"
+              description="Turn weeks of manual work into hours. Our AI analyzes RFPs and generates tailored responses in minutes."
+            />
+            <FeatureCard
+              icon={<Brain className="h-10 w-10 text-success-500" />}
+              title="Smart AI Personalization"
+              description="Our AI learns your company's voice, experience, and strengths to create responses that sound authentically yours."
+            />
+            <FeatureCard
+              icon={<CheckCircle className="h-10 w-10 text-primary-500" />}
+              title="Professional Results"
+              description="Generate polished, client-ready proposals that highlight your expertise and increase your win rate."
+            />
+            <FeatureCard
+              icon={<FileText className="h-10 w-10 text-success-500" />}
+              title="Multiple Formats"
+              description="Support for PDF, Word, and text files. Export your responses as professional PDFs ready for submission."
+            />
+            <FeatureCard
+              icon={<Brain className="h-10 w-10 text-primary-500" />}
+              title="Memory System"
+              description="Build a knowledge base of your company's capabilities, past projects, and expertise for consistent responses."
+            />
+            <FeatureCard
+              icon={<Edit className="h-10 w-10 text-success-500" />}
+              title="Full Control"
+              description="Edit, customize, and perfect every response with our intuitive editor before sending to clients."
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Smart Memory Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="bg-white rounded-2xl p-8 md:p-12 shadow-strong">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-charcoal-900 mb-8">Intelligent Memory That Grows With You</h2>
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
-                  <MessageSquare className="text-primary" size={20} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Remembers Your Company Voice</h3>
-                  <p className="text-gray-600">AlignRFP learns your unique company voice and messaging patterns, ensuring every response feels authentically yours.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
-                  <Zap className="text-primary" size={20} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Stores Your Differentiators</h3>
-                  <p className="text-gray-600">The platform maintains a database of your key differentiators and unique selling points, highlighting them strategically in responses.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
-                  <FileText className="text-primary" size={20} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Project Memory</h3>
-                  <p className="text-gray-600">AlignRFP remembers all your past projects, making it easy to reference previous successful responses and adapt them for new opportunities.</p>
-                </div>
-              </div>
+              <MemoryFeature
+                icon={<MessageSquare className="text-primary-500" size={20} />}
+                title="Remembers Your Company Voice"
+                description="AlignRFP learns your unique company voice and messaging patterns, ensuring every response feels authentically yours."
+              />
+              <MemoryFeature
+                icon={<Zap className="text-primary-500" size={20} />}
+                title="Stores Your Differentiators"
+                description="The platform maintains a database of your key differentiators and unique selling points, highlighting them strategically in responses."
+              />
+              <MemoryFeature
+                icon={<FileText className="text-primary-500" size={20} />}
+                title="Project Memory"
+                description="AlignRFP remembers all your past projects, making it easy to reference previous successful responses and adapt them for new opportunities."
+              />
             </div>
             
-            <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-6 space-y-4">
-              <h3 className="text-xl font-semibold text-gray-900">Your Response Memories</h3>
-              <p className="text-gray-600">Our intelligent system creates a comprehensive memory bank specifically for your organization:</p>
+            <div className="bg-gradient-to-br from-primary-50 to-success-50 rounded-xl p-6 space-y-4">
+              <h3 className="text-xl font-semibold text-charcoal-900">Your Response Memories</h3>
+              <p className="text-charcoal-600">Our intelligent system creates a comprehensive memory bank specifically for your organization:</p>
               <ul className="space-y-3">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="text-secondary" size={16} />
-                  <span>Writing samples that reflect your voice</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="text-secondary" size={16} />
-                  <span>Previous projects and success stories</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="text-secondary" size={16} />
-                  <span>Differentiators; what makes you stand out</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="text-secondary" size={16} />
-                  <span>Your unique skills and offerings</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="text-secondary" size={16} />
-                  <span>Common response patterns and frameworks</span>
-                </li>
+                <MemoryItem text="Writing samples that reflect your voice" />
+                <MemoryItem text="Previous projects and success stories" />
+                <MemoryItem text="Differentiators; what makes you stand out" />
+                <MemoryItem text="Your unique skills and offerings" />
+                <MemoryItem text="Common response patterns and frameworks" />
               </ul>
-              <p className="text-gray-700 font-medium">The system gets smarter with every file you process, continuously improving response quality and relevance.</p>
+              <p className="text-charcoal-700 font-medium">The system gets smarter with every file you process, continuously improving response quality and relevance.</p>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* FAQ Section */}
-        <div className="mt-24">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Frequently Asked Questions</h2>
-          <div className="space-y-6 max-w-3xl mx-auto">
+      {/* FAQ Section */}
+      <div className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-charcoal-900 mb-12">Frequently Asked Questions</h2>
+          <div className="space-y-6">
             <FAQItem 
               question="What makes AlignRFP different from other RFP automation tools?"
-              answer="AlignRFP is built for personalization at scale. Unlike generic AI tools, we learn your company’s tone, strengths, and past responses to create tailored answers that feel human, not templated."
+              answer="AlignRFP is built for personalization at scale. Unlike generic AI tools, we learn your company's tone, strengths, and past responses to create tailored answers that feel human, not templated."
             />
             <FAQItem 
               question="How does AlignRFP ensure accuracy in responses?"
@@ -259,33 +304,35 @@ function App() {
             />
           </div>
         </div>
+      </div>
 
-        {/* Final CTA */}
-        <div className="mt-24 bg-gradient-to-r from-primary to-secondary rounded-xl p-12 text-center text-white animate-gradient">
-          <h2 className="text-3xl font-bold mb-4">Ready to transform your RFP process?</h2>
+      {/* Final CTA */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="bg-gradient-to-r from-primary-500 to-success-500 rounded-2xl p-12 text-center text-white shadow-strong">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to transform your RFP process?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">Join the waitlist today and be among the first to experience the power of AI-generated RFP responses.</p>
           {!submitted ? (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto animate-pulse-slow">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
               <input
                 type="email"
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email for early access"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 border-none focus:outline-none focus:ring-2 focus:ring-white"
+                className="flex-1 px-4 py-3 rounded-xl text-charcoal-900 border-none focus:outline-none focus:ring-2 focus:ring-white"
                 required
               />
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-6 py-3 bg-white text-primary hover:bg-gray-100 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
+                className="px-6 py-3 bg-white text-primary-600 hover:bg-charcoal-50 rounded-xl font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
               >
                 {submitting ? 'Submitting...' : 'Join Waitlist'}
                 {!submitting && <ArrowRight size={20} />}
               </button>
             </form>
           ) : (
-            <div className="p-4 bg-white/20 backdrop-blur-sm rounded-lg max-w-md mx-auto">
+            <div className="p-4 bg-white/20 backdrop-blur-sm rounded-xl max-w-md mx-auto">
               <p className="text-white flex items-center justify-center gap-2">
                 <CheckCircle size={20} />
                 Thanks! We'll notify you when we launch.
@@ -295,33 +342,39 @@ function App() {
         </div>
       </div>
 
-      {/* Footer with Logo */}
-      <footer className="bg-white py-12 border-t border-gray-200">
+      {/* Footer */}
+      <footer className="bg-white py-12 border-t border-charcoal-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-6 md:mb-0">
-              {/* Footer Logo */}
               <img src={logo} alt="AlignRFP logo" className="h-8 w-8 mr-2" />
-              <span className="text-lg font-semibold text-gray-900">AlignRFP</span>
+              <span className="text-lg font-semibold text-charcoal-900">AlignRFP</span>
             </div>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-500 hover:text-primary">Privacy Policy</a>
-              <a href="#" className="text-gray-500 hover:text-primary">Terms of Service</a>
-              <a href="#" className="text-gray-500 hover:text-primary">Contact Us</a>
+              <Link to="/privacy-policy" className="text-charcoal-500 hover:text-primary-500 transition-colors">Privacy Policy</Link>
+              <Link to="/terms-of-service" className="text-charcoal-500 hover:text-primary-500 transition-colors">Terms of Service</Link>
+              <Link to="/contact-us" className="text-charcoal-500 hover:text-primary-500 transition-colors">Contact Us</Link>
             </div>
           </div>
-          <div className="mt-8 text-center text-gray-500 text-sm">
+          <div className="mt-8 text-center text-charcoal-500 text-sm">
             &copy; {new Date().getFullYear()} AlignRFP. All rights reserved.
           </div>
         </div>
       </footer>
     </div>
   );
+};
+
+// Helper Components
+interface FeatureCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
 }
 
-function FeatureCard({ icon, title, description }) {
+function FeatureCard({ icon, title, description }: FeatureCardProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [elementRef, setElementRef] = useState(null);
+  const [elementRef, setElementRef] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!elementRef) return;
@@ -346,22 +399,31 @@ function FeatureCard({ icon, title, description }) {
   return (
     <div 
       ref={setElementRef}
-      className={`bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-500 ${
+      className={`group bg-white p-10 text-center rounded-2xl shadow-soft hover:shadow-strong transition-all duration-500 border-2 border-transparent hover:border-primary-300 transform hover:scale-105 ${
         isVisible 
           ? 'opacity-100 translate-y-0' 
           : 'opacity-0 translate-y-10'
       }`}
     >
-      <div className="mb-4">{icon}</div>
-      <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
-      <p className="text-gray-600">{description}</p>
+      <div className="w-20 h-20 bg-gradient-to-br from-primary-50 to-success-50 rounded-2xl flex items-center justify-center mb-8 mx-auto shadow-medium group-hover:shadow-strong transition-shadow duration-300 group-hover:scale-110">
+        {icon}
+      </div>
+      <h3 className="text-2xl font-bold mb-6 text-charcoal-900">{title}</h3>
+      <p className="text-charcoal-600 text-lg leading-relaxed">{description}</p>
     </div>
   );
 }
 
-function ProcessStep({ number, icon, title, description }) {
+interface ProcessStepProps {
+  number: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+function ProcessStep({ number, icon, title, description }: ProcessStepProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [elementRef, setElementRef] = useState(null);
+  const [elementRef, setElementRef] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!elementRef) return;
@@ -386,31 +448,85 @@ function ProcessStep({ number, icon, title, description }) {
   return (
     <div 
       ref={setElementRef}
-      className={`flex flex-col items-center text-center transition-all duration-700 ${
+      className={`relative group transition-all duration-700 ${
         isVisible 
           ? 'opacity-100 translate-y-0' 
           : 'opacity-0 translate-y-16'
       }`}
       style={{ transitionDelay: `${parseInt(number) * 150}ms` }}
     >
-      <div className="relative">
-        <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+      <div className="absolute -left-8 -top-8 w-20 h-20 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center text-3xl font-bold shadow-strong animate-bounce-in animate-float transform group-hover:scale-110 transition-transform duration-300">
+        {number}
+      </div>
+      <div className="bg-white p-12 h-full rounded-2xl shadow-soft hover:shadow-strong transition-all duration-500 border-2 border-transparent hover:border-primary-300 transform hover:scale-105">
+        <div className="w-24 h-24 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-10 animate-float shadow-medium group-hover:shadow-strong transition-shadow duration-300">
           {icon}
         </div>
-        <div className={`absolute -top-2 -right-2 h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center font-bold transition-transform duration-500 ${isVisible ? 'scale-100' : 'scale-0'}`}>
-          {number}
-        </div>
+        <h3 className="text-3xl font-bold mb-8 text-charcoal-900">{title}</h3>
+        <p className="text-charcoal-600 leading-relaxed text-xl">{description}</p>
       </div>
-      <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
-      <p className="text-gray-600">{description}</p>
     </div>
   );
 }
 
-function FAQItem({ question, answer }) {
+interface StatCardProps {
+  value: string;
+  label: string;
+  description: string;
+}
+
+function StatCard({ value, label, description }: StatCardProps) {
+  return (
+    <div className="text-center group">
+      <div className="text-4xl md:text-6xl font-bold text-white mb-4 group-hover:scale-110 transition-transform duration-300">{value}</div>
+      <div className="text-xl text-white/90 font-semibold">{label}</div>
+      <div className="text-white/70 mt-2">{description}</div>
+    </div>
+  );
+}
+
+interface MemoryFeatureProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+function MemoryFeature({ icon, title, description }: MemoryFeatureProps) {
+  return (
+    <div className="flex items-start gap-4">
+      <div className="h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0 mt-1">
+        {icon}
+      </div>
+      <div>
+        <h3 className="text-lg font-semibold text-charcoal-900 mb-2">{title}</h3>
+        <p className="text-charcoal-600">{description}</p>
+      </div>
+    </div>
+  );
+}
+
+interface MemoryItemProps {
+  text: string;
+}
+
+function MemoryItem({ text }: MemoryItemProps) {
+  return (
+    <li className="flex items-center gap-2">
+      <CheckCircle className="text-success-500" size={16} />
+      <span>{text}</span>
+    </li>
+  );
+}
+
+interface FAQItemProps {
+  question: string;
+  answer: string;
+}
+
+function FAQItem({ question, answer }: FAQItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [elementRef, setElementRef] = useState(null);
+  const [elementRef, setElementRef] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!elementRef) return;
@@ -435,7 +551,7 @@ function FAQItem({ question, answer }) {
   return (
     <div 
       ref={setElementRef}
-      className={`border-b border-gray-200 pb-4 transition-all duration-500 ${
+      className={`border-b border-charcoal-200 pb-4 transition-all duration-500 ${
         isVisible 
           ? 'opacity-100 translate-x-0' 
           : 'opacity-0 -translate-x-8'
@@ -445,21 +561,32 @@ function FAQItem({ question, answer }) {
         className="flex justify-between items-center w-full text-left"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="text-lg font-semibold text-gray-900">{question}</h3>
+        <h3 className="text-lg font-semibold text-charcoal-900">{question}</h3>
         <span className={`transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </span>
       </button>
       <div 
-        className={`mt-2 text-gray-600 overflow-hidden transition-all duration-300 ${
+        className={`mt-2 text-charcoal-600 overflow-hidden transition-all duration-300 ${
           isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <p>{answer}</p>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<MainLayout />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/terms-of-service" element={<TermsOfService />} />
+      <Route path="/contact-us" element={<ContactUs />} />
+    </Routes>
   );
 }
 

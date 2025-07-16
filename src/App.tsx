@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { Bot, Shield, Zap, MessageSquare, CheckCircle, ArrowRight, FileText, PieChart, Users, Brain, Clock, Edit } from 'lucide-react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Bot, Shield, Zap, MessageSquare, CheckCircle, ArrowRight, FileText, PieChart, Users, Brain, Clock, Edit, Sparkle, Sparkles } from 'lucide-react';
 import logo from '../assets/alignRFP_logo7.svg';
 import PrivacyPolicy from './PrivacyPolicy';
 import TermsOfService from './TermsOfService';
 import ContactUs from './ContactUs';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 
 function MainLayout() {
@@ -13,6 +23,7 @@ function MainLayout() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [scrollY, setScrollY] = useState(0);
+  const [isAnnual, setIsAnnual] = useState(false);
 
   // Track scroll position for animations
   useEffect(() => {
@@ -57,12 +68,26 @@ function MainLayout() {
       {/* Navbar */}
       <nav className="bg-white shadow-soft py-4 relative z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center">
+          <div className="flex items-center justify-between">
             <div className="flex items-center">
               <a href="/" className="flex items-center text-2xl font-bold no-underline whitespace-nowrap">
                 <img src={logo} alt="AlignRFP logo" className="h-8 w-8 mr-2" />
                 <span className="font-inter text-black">AlignRFP</span>
               </a>
+            </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#how-it-works" className="text-charcoal-600 hover:text-primary-600 font-medium transition-colors duration-200">
+                How it Works
+              </a>
+              <a href="#pricing" className="text-charcoal-600 hover:text-primary-600 font-medium transition-colors duration-200">
+                Pricing
+              </a>
+              <a href="#faqs" className="text-charcoal-600 hover:text-primary-600 font-medium transition-colors duration-200">
+                FAQs
+              </a>
+              <Link to="/contact-us" className="text-charcoal-600 hover:text-primary-600 font-medium transition-colors duration-200">
+                Contact Us
+              </Link>
             </div>
           </div>
         </div>
@@ -87,7 +112,7 @@ function MainLayout() {
               </p>
 
               {/* Email Collection */}
-              <div className="max-w-md mx-auto mb-16 animate-slide-up">
+              <div className="max-w-lg mx-auto mb-16 animate-slide-up">
                 {!submitted ? (
                   <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
                     <input
@@ -126,7 +151,7 @@ function MainLayout() {
       </div>
 
       {/* How It Works Section */}
-      <div className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 w-full relative overflow-hidden">
+      <div id="how-it-works" className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 w-full relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-600/5 to-success-600/5"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
@@ -214,7 +239,7 @@ function MainLayout() {
               description="Turn weeks of manual work into hours. Our AI analyzes RFPs and generates tailored responses in minutes."
             />
             <FeatureCard
-              icon={<Brain className="h-10 w-10 text-success-500" />}
+              icon={<Sparkles className="h-10 w-10 text-success-500" />}
               title="Smart AI Personalization"
               description="Our AI learns your company's voice, experience, and strengths to create responses that sound authentically yours."
             />
@@ -281,8 +306,29 @@ function MainLayout() {
         </div>
       </div>
 
+      {/* Pricing Section */}
+      <div id="pricing" className="bg-white py-20 w-full relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="relative inline-block">
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary-600/20 to-success-600/20 rounded-2xl blur-2xl opacity-50 animate-pulse"></div>
+              <h2 className="relative text-4xl md:text-5xl font-bold text-charcoal-900 mb-6">
+                Choose Your Plan
+              </h2>
+            </div>
+            <p className="text-xl text-charcoal-600 max-w-3xl mx-auto mb-8">
+              Select the perfect plan for your business needs
+            </p>
+            
+            <PricingToggle isAnnual={isAnnual} setIsAnnual={setIsAnnual} />
+          </div>
+          
+          <PricingCards isAnnual={isAnnual} />
+        </div>
+      </div>
+
       {/* FAQ Section */}
-      <div className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
+      <div id="faqs" className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-charcoal-900 mb-12">Frequently Asked Questions</h2>
           <div className="space-y-6">
@@ -312,7 +358,7 @@ function MainLayout() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to transform your RFP process?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">Join the waitlist today and be among the first to experience the power of AI-generated RFP responses.</p>
           {!submitted ? (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-lg mx-auto">
               <input
                 type="email"
                 name="email"
@@ -332,7 +378,7 @@ function MainLayout() {
               </button>
             </form>
           ) : (
-            <div className="p-4 bg-white/20 backdrop-blur-sm rounded-xl max-w-md mx-auto">
+            <div className="p-4 bg-white/20 backdrop-blur-sm rounded-xl max-w-lg mx-auto">
               <p className="text-white flex items-center justify-center gap-2">
                 <CheckCircle size={20} />
                 Thanks! We'll notify you when we launch.
@@ -574,9 +620,190 @@ function MemoryItem({ text }: { text: string }) {
   );
 }
 
+interface PricingToggleProps {
+  isAnnual: boolean;
+  setIsAnnual: (isAnnual: boolean) => void;
+}
+
+function PricingToggle({ isAnnual, setIsAnnual }: PricingToggleProps) {
+  return (
+    <div className="flex items-center justify-center">
+      <div className="relative bg-charcoal-100 rounded-full p-1 flex items-center">
+        <button
+          onClick={() => setIsAnnual(false)}
+          className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+            !isAnnual 
+              ? 'bg-white text-charcoal-900 shadow-medium' 
+              : 'text-charcoal-600 hover:text-charcoal-900'
+          }`}
+        >
+          Monthly
+        </button>
+        <button
+          onClick={() => setIsAnnual(true)}
+          className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 relative ${
+            isAnnual 
+              ? 'bg-white text-charcoal-900 shadow-medium' 
+              : 'text-charcoal-600 hover:text-charcoal-900'
+          }`}
+        >
+          Annual
+          <span className="absolute -top-8 -right-3 bg-gradient-to-r from-success-500 to-success-600 text-white text-xs px-2 py-1 rounded-full whitespace-nowrap">
+            2 months free
+          </span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+interface PricingCardsProps {
+  isAnnual: boolean;
+}
+
+function PricingCards({ isAnnual }: PricingCardsProps) {
+  const pricingData = [
+    {
+      title: "Starter",
+      monthlyPrice: 49,
+      description: "Perfect for small teams getting started",
+      features: [
+        "15 Projects per month",
+        "Self-service onboarding", 
+        "Basic template library",
+        "Company memories"
+      ],
+      isPopular: false
+    },
+    {
+      title: "Professional",
+      monthlyPrice: 99,
+      description: "Ideal for growing businesses",
+      features: [
+        "Unlimited Projects",
+        "Advanced AI personalization",
+        "Priority support",
+        "Custom templates",
+      ],
+      isPopular: true
+    },
+    {
+      title: "Enterprise",
+      monthlyPrice: null,
+      description: "For large organizations",
+      features: [
+        "Everything in Professional",
+        "Custom branded subdomain",
+        "Personalized onboarding",
+        "Custom LLM fine-tuning",
+      ],
+      isPopular: false
+    }
+  ];
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {pricingData.map((plan, index) => (
+        <PricingCard
+          key={index}
+          title={plan.title}
+          monthlyPrice={plan.monthlyPrice}
+          description={plan.description}
+          features={plan.features}
+          isPopular={plan.isPopular}
+          isAnnual={isAnnual}
+        />
+      ))}
+    </div>
+  );
+}
+
+interface PricingCardProps {
+  title: string;
+  monthlyPrice: number | null;
+  description: string;
+  features: string[];
+  isPopular: boolean;
+  isAnnual: boolean;
+}
+
+function PricingCard({ title, monthlyPrice, description, features, isPopular, isAnnual }: PricingCardProps) {
+  const getPrice = () => {
+    if (monthlyPrice === null) {
+      return "Contact Us";
+    }
+    
+    if (isAnnual) {
+      const annualPrice = monthlyPrice * 10; // 10 months instead of 12 (2 months free)
+      return `$${annualPrice}/year`;
+    }
+    
+    return `$${monthlyPrice}/month`;
+  };
+
+  const getOriginalPrice = () => {
+    if (monthlyPrice === null || !isAnnual) {
+      return null;
+    }
+    
+    const fullAnnualPrice = monthlyPrice * 12;
+    return `$${fullAnnualPrice}/year`;
+  };
+
+  return (
+    <div className={`relative bg-white rounded-2xl shadow-soft hover:shadow-strong transition-all duration-300 p-8 ${
+      isPopular ? 'border-2 border-primary-500 transform scale-105' : 'border border-charcoal-200'
+    }`}>
+      {isPopular && (
+        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+          <span className="bg-gradient-to-r from-primary-500 to-success-500 text-white px-6 py-2 rounded-full text-sm font-semibold">
+            Most Popular
+          </span>
+        </div>
+      )}
+      
+      <div className="text-center mb-8">
+        <h3 className="text-2xl font-bold text-charcoal-900 mb-2">{title}</h3>
+        <p className="text-charcoal-600 mb-4">{description}</p>
+        <div className="mb-6">
+          <div className="flex flex-col items-center">
+            <span className="text-4xl font-bold text-charcoal-900">{getPrice()}</span>
+            {getOriginalPrice() && (
+              <div className="flex items-center gap-2 mt-1">
+                <span className="text-sm text-charcoal-500 line-through">{getOriginalPrice()}</span>
+                <span className="text-xs bg-success-100 text-success-700 px-2 py-1 rounded-full">
+                  2 months free
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      
+      <ul className="space-y-4 mb-8">
+        {features.map((feature, index) => (
+          <li key={index} className="flex items-center space-x-3">
+            <CheckCircle className="h-5 w-5 text-success-500 flex-shrink-0" />
+            <span className="text-charcoal-600">{feature}</span>
+          </li>
+        ))}
+      </ul>
+      
+      <Link to="/contact-us" className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 text-center block ${
+        isPopular
+          ? 'bg-gradient-to-r from-primary-500 to-success-500 text-white hover:from-primary-600 hover:to-success-600 transform hover:scale-105'
+          : 'bg-gradient-to-r from-primary-500 to-success-500 text-white hover:from-primary-600 hover:to-success-600 transform hover:scale-105'
+      }`}>
+        Get Started
+      </Link>
+    </div>
+  );
+}
+
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayout />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />

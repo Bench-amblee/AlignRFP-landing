@@ -25,7 +25,7 @@ const ContactUs: React.FC = () => {
         </div>
       </nav>
 
-      <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto py-12 px-2 sm:px-4 lg:px-6">
         <header className="mb-10 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-charcoal-900 tracking-tight mb-4">Get in Touch</h1>
           <p className="text-lg md:text-xl text-charcoal-600 max-w-3xl mx-auto leading-relaxed">
@@ -91,17 +91,17 @@ const ContactUs: React.FC = () => {
               
               <div className="space-y-4">
                 <div className="bg-white rounded-lg p-4 border border-charcoal-200">
-                  <h4 className="font-semibold text-charcoal-900 mb-2">💡 Feature Requests</h4>
+                  <h4 className="font-semibold text-charcoal-900 mb-2">Feature Requests</h4>
                   <p className="text-sm text-charcoal-600">Tell us about features you'd like to see</p>
                 </div>
                 
                 <div className="bg-white rounded-lg p-4 border border-charcoal-200">
-                  <h4 className="font-semibold text-charcoal-900 mb-2">🐛 Bug Reports</h4>
+                  <h4 className="font-semibold text-charcoal-900 mb-2">Bug Reports</h4>
                   <p className="text-sm text-charcoal-600">Help us fix issues and improve the platform</p>
                 </div>
                 
                 <div className="bg-white rounded-lg p-4 border border-charcoal-200">
-                  <h4 className="font-semibold text-charcoal-900 mb-2">💬 General Questions</h4>
+                  <h4 className="font-semibold text-charcoal-900 mb-2">General Questions</h4>
                   <p className="text-sm text-charcoal-600">Ask us anything about AlignRFP</p>
                 </div>
               </div>

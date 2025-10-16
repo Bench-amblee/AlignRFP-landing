@@ -664,38 +664,44 @@ interface PricingCardsProps {
 function PricingCards({ isAnnual }: PricingCardsProps) {
   const pricingData = [
     {
-      title: "Starter",
-      monthlyPrice: 49,
-      description: "Perfect for small teams getting started",
+      title: "AlignRFP Starter",
+      monthlyPrice: 99,
+      description: "Perfect for individual consultants and small teams",
       features: [
-        "15 Projects per month",
-        "Self-service onboarding", 
-        "Basic template library",
-        "Company memories"
+        "5 active projects per month (Up to 250 documents)",
+        "AI-powered content generation",
+        "Document editing and export",
+        "Memory system for personalization",
+        "Google Docs integration",
+        "PDF & DOCX export"
       ],
       isPopular: false
     },
     {
-      title: "Professional",
-      monthlyPrice: 99,
-      description: "Ideal for growing businesses",
+      title: "AlignRFP Pro",
+      monthlyPrice: 249,
+      description: "For consulting firms and growing teams",
       features: [
-        "Unlimited Projects",
-        "Advanced AI personalization",
+        "20 active projects per month (Up to 1000 documents)",
+        "Everything in Starter",
         "Priority support",
-        "Custom templates",
+        "Advanced memory system",
       ],
       isPopular: true
     },
     {
-      title: "Enterprise",
+      title: "AlignRFP Enterprise",
       monthlyPrice: null,
-      description: "For large organizations",
+      description: "For large organizations with custom needs",
       features: [
-        "Everything in Professional",
-        "Custom branded subdomain",
-        "Personalized onboarding",
-        "Custom LLM fine-tuning",
+        "Unlimited active projects and documents",
+        "Everything in Pro",
+        "Custom AI model training",
+        "Advanced team collaboration",
+        "White-label solutions",
+        "API access & integrations",
+        "Custom compliance features",
+        "24/7 premium support"
       ],
       isPopular: false
     }
@@ -751,7 +757,7 @@ function PricingCard({ title, monthlyPrice, description, features, isPopular, is
   };
 
   return (
-    <div className={`relative bg-white rounded-2xl shadow-soft hover:shadow-strong transition-all duration-300 p-8 ${
+    <div className={`relative bg-white rounded-2xl shadow-soft hover:shadow-strong transition-all duration-300 p-8 flex flex-col ${
       isPopular ? 'border-2 border-primary-500 transform scale-105' : 'border border-charcoal-200'
     }`}>
       {isPopular && (
@@ -761,7 +767,7 @@ function PricingCard({ title, monthlyPrice, description, features, isPopular, is
           </span>
         </div>
       )}
-      
+
       <div className="text-center mb-8">
         <h3 className="text-2xl font-bold text-charcoal-900 mb-2">{title}</h3>
         <p className="text-charcoal-600 mb-4">{description}</p>
@@ -779,8 +785,8 @@ function PricingCard({ title, monthlyPrice, description, features, isPopular, is
           </div>
         </div>
       </div>
-      
-      <ul className="space-y-4 mb-8">
+
+      <ul className="space-y-4 mb-8 flex-grow">
         {features.map((feature, index) => (
           <li key={index} className="flex items-center space-x-3">
             <CheckCircle className="h-5 w-5 text-success-500 flex-shrink-0" />
@@ -788,8 +794,8 @@ function PricingCard({ title, monthlyPrice, description, features, isPopular, is
           </li>
         ))}
       </ul>
-      
-      <Link to="/contact-us" className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 text-center block ${
+
+      <Link to="/contact-us" className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 text-center block mt-auto ${
         isPopular
           ? 'bg-gradient-to-r from-primary-500 to-success-500 text-white hover:from-primary-600 hover:to-success-600 transform hover:scale-105'
           : 'bg-gradient-to-r from-primary-500 to-success-500 text-white hover:from-primary-600 hover:to-success-600 transform hover:scale-105'

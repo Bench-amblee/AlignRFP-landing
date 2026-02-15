@@ -210,7 +210,7 @@ function MainLayout() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             <StatCard value="80%" label="Time Saved" description="Average reduction in proposal creation time" />
             <StatCard value="8+" label="Hours" description="Time saved for each proposal" />
-            <StatCard value="1-Click" label="Access" description="Manage your past projects, differentiators, and skills" />
+            <StatCard value="1-Click" label="Access" description="Manage your past proposals, differentiators, and skills" />
             <StatCard value="100%" label="Private" description="Your data is encrypted, never shared, and always under your control" />
           </div>
         </div>
@@ -255,8 +255,8 @@ function MainLayout() {
             />
             <FeatureCard
               icon={<Brain className="h-10 w-10 text-primary-500" />}
-              title="Memory System"
-              description="Build a knowledge base of your company's capabilities, past projects, and expertise for consistent responses."
+              title="Knowledge Base"
+              description="Build a knowledge base of your company's capabilities, past proposals, and expertise for consistent responses."
             />
             <FeatureCard
               icon={<Edit className="h-10 w-10 text-success-500" />}
@@ -267,10 +267,10 @@ function MainLayout() {
         </div>
       </div>
 
-      {/* Smart Memory Section */}
+      {/* Knowledge Base Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="bg-white rounded-2xl p-8 md:p-12 shadow-strong">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-charcoal-900 mb-8">Intelligent Memory That Grows With You</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-charcoal-900 mb-8">Intelligent Knowledge Base That Grows With You</h2>
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-6">
               <MemoryFeature
@@ -285,17 +285,17 @@ function MainLayout() {
               />
               <MemoryFeature
                 icon={<FileText className="text-primary-500" size={20} />}
-                title="Project Memory"
-                description="AlignRFP remembers all your past projects, making it easy to reference previous successful responses and adapt them for new opportunities."
+                title="Proposal History"
+                description="AlignRFP remembers all your past proposals, making it easy to reference previous successful responses and adapt them for new opportunities."
               />
             </div>
             
             <div className="bg-gradient-to-br from-primary-50 to-success-50 rounded-xl p-6 space-y-4">
-              <h3 className="text-xl font-semibold text-charcoal-900">Your Response Memories</h3>
-              <p className="text-charcoal-600">Our intelligent system creates a comprehensive memory bank specifically for your organization:</p>
+              <h3 className="text-xl font-semibold text-charcoal-900">Your Knowledge Base</h3>
+              <p className="text-charcoal-600">Our intelligent system creates a comprehensive knowledge base specifically for your organization:</p>
               <ul className="space-y-3">
                 <MemoryItem text="Writing samples that reflect your voice" />
-                <MemoryItem text="Previous projects and success stories" />
+                <MemoryItem text="Previous proposals and success stories" />
                 <MemoryItem text="Differentiators; what makes you stand out" />
                 <MemoryItem text="Your unique skills and offerings" />
                 <MemoryItem text="Common response patterns and frameworks" />
@@ -344,7 +344,11 @@ function MainLayout() {
               question="Is my company data secure on the platform?"
               answer="Absolutely. We implement bank-grade encryption and security protocols. Your data is never shared, and you maintain complete ownership of all content generated on our platform."
             />
-            <FAQItem 
+            <FAQItem
+              question="What does 'active proposal' mean?"
+              answer="An active proposal is one that is currently in progress — you can generate responses, edit content, and export from it. Once you're done, you can mark a proposal as complete, at which point it becomes view-only. Completed proposals still live on your account for reference, they just don't count toward your active proposal limit."
+            />
+            <FAQItem
               question="How much time can AlignRFP save my team?"
               answer="Most companies report saving 50-70% of the time typically spent on RFP responses. Teams that previously spent 40+ hours on complex RFPs now complete them in 10-15 hours."
             />
@@ -668,10 +672,10 @@ function PricingCards({ isAnnual }: PricingCardsProps) {
       monthlyPrice: 99,
       description: "Perfect for individual consultants and small teams",
       features: [
-        "5 active projects per month (Up to 250 documents)",
+        "10 active proposals per month (Up to 100 responses)",
         "AI-powered content generation",
-        "Document editing and export",
-        "Memory system for personalization",
+        "Response editing and export",
+        "Knowledge base for personalization",
         "Google Docs integration",
         "PDF & DOCX export"
       ],
@@ -679,13 +683,13 @@ function PricingCards({ isAnnual }: PricingCardsProps) {
     },
     {
       title: "AlignRFP Pro",
-      monthlyPrice: 249,
+      monthlyPrice: 299,
       description: "For consulting firms and growing teams",
       features: [
-        "20 active projects per month (Up to 1000 documents)",
+        "50 active proposals per month (Up to 1000 responses)",
         "Everything in Starter",
         "Priority support",
-        "Advanced memory system",
+        "Advanced knowledge base",
       ],
       isPopular: true
     },
@@ -694,7 +698,7 @@ function PricingCards({ isAnnual }: PricingCardsProps) {
       monthlyPrice: null,
       description: "For large organizations with custom needs",
       features: [
-        "Unlimited active projects and documents",
+        "Unlimited active proposals and responses",
         "Everything in Pro",
         "Custom AI model training",
         "Advanced team collaboration",

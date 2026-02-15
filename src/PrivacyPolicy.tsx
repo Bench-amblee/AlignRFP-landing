@@ -98,7 +98,7 @@ const PrivacyPolicy: React.FC = () => {
 
           <h3 className="text-xl font-semibold text-charcoal-800 mt-8 mb-4">Google Drive and Google Docs Integration</h3>
           <p className="text-charcoal-700 leading-relaxed">
-            When you choose to export documents to Google Docs, AlignRFP requests access to your Google Drive with the following scope:
+            When you choose to export responses to Google Docs, AlignRFP requests access to your Google Drive with the following scope:
           </p>
           <ul className="list-disc list-inside space-y-2 text-charcoal-700 ml-4">
             <li><strong>https://www.googleapis.com/auth/drive.file</strong> - This allows AlignRFP to create new Google Docs in your Google Drive and access only files created by AlignRFP.</li>
@@ -109,7 +109,7 @@ const PrivacyPolicy: React.FC = () => {
             We use your Google credentials solely to:
           </p>
           <ul className="list-disc list-inside space-y-2 text-charcoal-700 ml-4">
-            <li>Create Google Docs documents in your Google Drive when you explicitly request to export a document</li>
+            <li>Create Google Docs documents in your Google Drive when you explicitly request to export a response</li>
             <li>Format the exported document with your RFP response content</li>
           </ul>
           <p className="text-charcoal-700 leading-relaxed">
@@ -130,7 +130,7 @@ const PrivacyPolicy: React.FC = () => {
           <h3 className="text-xl font-semibold text-charcoal-800 mt-8 mb-4">Retention Periods</h3>
           <ul className="list-disc list-inside space-y-2 text-charcoal-700 ml-4">
             <li><strong>Account Data:</strong> We retain your account information (email, name, profile data) for as long as your account is active or as needed to provide you services.</li>
-            <li><strong>RFP Documents:</strong> Documents you create within AlignRFP are retained until you delete them or close your account.</li>
+            <li><strong>RFP Responses:</strong> Active responses are retained while your account is active. Archived and completed proposals remain in a view-only state subject to the storage limits of your plan (e.g., 500 archived proposals for Starter, 5,000 for Pro). Responses are permanently deleted when you remove them or close your account.</li>
             <li><strong>Google OAuth Credentials:</strong> Your Google access tokens and refresh tokens are stored securely in our database and are retained only while you maintain an active connection to Google. These credentials are deleted when you disconnect Google integration or close your account.</li>
             <li><strong>Usage Data:</strong> We retain usage and analytics data for up to 24 months for the purpose of improving our Service.</li>
           </ul>
@@ -145,13 +145,13 @@ const PrivacyPolicy: React.FC = () => {
             You can delete your data in the following ways:
           </p>
           <ul className="list-disc list-inside space-y-2 text-charcoal-700 ml-4">
-            <li><strong>Individual Documents:</strong> Delete any RFP document from your dashboard at any time.</li>
+            <li><strong>Individual Responses:</strong> Delete any RFP response from your dashboard at any time.</li>
             <li><strong>Google Integration:</strong> Disconnect Google integration from your account settings, which will immediately delete your stored Google credentials from our servers.</li>
             <li><strong>Account Deletion:</strong> You may request complete account deletion by contacting us at <a href="mailto:support@alignrfp.com" className="text-primary-600 hover:text-primary-700 underline transition-colors duration-200">support@alignrfp.com</a>. Upon account deletion, we will permanently delete all of your personal data, including:
               <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
                 <li>Your account information (email, name, profile)</li>
-                <li>All RFP documents and content you created</li>
-                <li>Your stored memories and personalization data</li>
+                <li>All RFP responses and content you created</li>
+                <li>Your knowledge base and personalization data</li>
                 <li>Google OAuth credentials and tokens</li>
               </ul>
             </li>

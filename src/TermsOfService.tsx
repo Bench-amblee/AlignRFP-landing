@@ -71,26 +71,49 @@ const TermsOfService: React.FC = () => {
             <li>Attempt to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Service, the server on which the Service is stored, or any server, computer, or database connected to the Service.</li>
           </ul>
 
-          <h2 className="text-2xl font-bold text-charcoal-900 mt-12 mb-6 border-b border-charcoal-200 pb-2">4. Termination</h2>
+          <h2 className="text-2xl font-bold text-charcoal-900 mt-12 mb-6 border-b border-charcoal-200 pb-2">4. Service Plans and Usage Limits</h2>
+          <p className="text-charcoal-700 leading-relaxed">AlignRFP offers tiered service plans, each with defined usage limits. By subscribing to a plan, you agree to operate within the usage limits associated with your selected tier.</p>
+
+          <h3 className="text-xl font-semibold text-charcoal-800 mt-8 mb-4">Active Proposals</h3>
+          <p className="text-charcoal-700 leading-relaxed">Each plan includes a limit on the number of active proposals you may maintain at any given time. Active proposals are those currently in progress or open for editing. You may archive or mark proposals as complete at any time, at which point they become view-only and no longer count toward your active proposal limit.</p>
+          <ul className="list-disc list-inside space-y-2 text-charcoal-700 ml-4">
+            <li><strong>Starter:</strong> Up to 10 active proposals per month</li>
+            <li><strong>Pro:</strong> Up to 50 active proposals per month</li>
+            <li><strong>Enterprise:</strong> Unlimited active proposals</li>
+          </ul>
+
+          <h3 className="text-xl font-semibold text-charcoal-800 mt-8 mb-4">Archived Proposals</h3>
+          <p className="text-charcoal-700 leading-relaxed">Archived and completed proposals remain accessible in a view-only state. To ensure fair use of platform resources, each plan includes a soft limit on the total number of archived proposals stored on your account:</p>
+          <ul className="list-disc list-inside space-y-2 text-charcoal-700 ml-4">
+            <li><strong>Starter:</strong> Up to 500 archived proposals</li>
+            <li><strong>Pro:</strong> Up to 5,000 archived proposals</li>
+            <li><strong>Enterprise:</strong> Custom limits based on your agreement</li>
+          </ul>
+          <p className="text-charcoal-700 leading-relaxed">If you approach or exceed your archived proposal limit, we may ask you to remove older archived proposals or upgrade your plan. We reserve the right to enforce these limits to maintain the quality and performance of the Service for all users.</p>
+
+          <h3 className="text-xl font-semibold text-charcoal-800 mt-8 mb-4">Plan Changes</h3>
+          <p className="text-charcoal-700 leading-relaxed">You may upgrade or downgrade your plan at any time. If you downgrade to a plan with lower limits, existing archived proposals beyond the new limit will remain accessible in view-only mode, but you will not be able to create new proposals until your usage is within the limits of your current plan.</p>
+
+          <h2 className="text-2xl font-bold text-charcoal-900 mt-12 mb-6 border-b border-charcoal-200 pb-2">5. Termination</h2>
           <p className="text-charcoal-700 leading-relaxed">We may terminate or suspend your account and bar access to the Service immediately, without prior notice or liability, under our sole discretion, for any reason whatsoever and without limitation, including but not limited to a breach of the Terms.</p>
           <p className="text-charcoal-700 leading-relaxed">If you wish to terminate your account, you may simply discontinue using the Service.</p>
           <p className="text-charcoal-700 leading-relaxed">All provisions of the Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity and limitations of liability.</p>
 
-          <h2 className="text-2xl font-bold text-charcoal-900 mt-12 mb-6 border-b border-charcoal-200 pb-2">5. Disclaimer of Warranties; Limitation of Liability</h2>
+          <h2 className="text-2xl font-bold text-charcoal-900 mt-12 mb-6 border-b border-charcoal-200 pb-2">6. Disclaimer of Warranties; Limitation of Liability</h2>
           <p className="text-charcoal-700 leading-relaxed">The Service is provided on an "AS IS" and "AS AVAILABLE" basis. AlignRFP makes no representations or warranties of any kind, express or implied, as to the operation of their services, or the information, content, or materials included therein. You expressly agree that your use of these services, their content, and any services or items obtained from us is at your sole risk.</p>
           <p className="text-charcoal-700 leading-relaxed">Neither AlignRFP nor any person associated with AlignRFP makes any warranty or representation with respect to the completeness, security, reliability, quality, accuracy, or availability of the services. Without limiting the foregoing, neither AlignRFP nor anyone associated with AlignRFP represents or warrants that the services, their content, or any services or items obtained through the services will be accurate, reliable, error-free, or uninterrupted, that defects will be corrected, that the services or the server that makes it available are free of viruses or other harmful components or that the services or any services or items obtained through the services will otherwise meet your needs or expectations.</p>
           <p className="text-charcoal-700 leading-relaxed">AlignRFP hereby disclaims all warranties of any kind, whether express or implied, statutory, or otherwise, including but not limited to any warranties of merchantability, non-infringement, and fitness for particular purpose.</p>
           <p className="text-charcoal-700 leading-relaxed">In no event will AlignRFP, its affiliates, or their licensors, service providers, employees, agents, officers, or directors be liable for damages of any kind, under any legal theory, arising out of or in connection with your use, or inability to use, the Service, any websites linked to it, any content on the Service or such other websites, including any direct, indirect, special, incidental, consequential, or punitive damages, including but not limited to, personal injury, pain and suffering, emotional distress, loss of revenue, loss of profits, loss of business or anticipated savings, loss of use, loss of goodwill, loss of data, and whether caused by tort (including negligence), breach of contract, or otherwise, even if foreseeable.</p>
 
-          <h2 className="text-2xl font-bold text-charcoal-900 mt-12 mb-6 border-b border-charcoal-200 pb-2">6. Governing Law</h2>
+          <h2 className="text-2xl font-bold text-charcoal-900 mt-12 mb-6 border-b border-charcoal-200 pb-2">7. Governing Law</h2>
           <p className="text-charcoal-700 leading-relaxed">These Terms shall be governed and construed in accordance with the laws of the United States, without regard to its conflict of law provisions.</p>
           <p className="text-charcoal-700 leading-relaxed">Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect. These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have had between us regarding the Service.</p>
 
-          <h2 className="text-2xl font-bold text-charcoal-900 mt-12 mb-6 border-b border-charcoal-200 pb-2">7. Changes</h2>
+          <h2 className="text-2xl font-bold text-charcoal-900 mt-12 mb-6 border-b border-charcoal-200 pb-2">8. Changes</h2>
           <p className="text-charcoal-700 leading-relaxed">We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
           <p className="text-charcoal-700 leading-relaxed">By continuing to access or use our Service after any revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, you are no longer authorized to use the Service.</p>
 
-          <h2 className="text-2xl font-bold text-charcoal-900 mt-12 mb-6 border-b border-charcoal-200 pb-2">8. Contact Us</h2>
+          <h2 className="text-2xl font-bold text-charcoal-900 mt-12 mb-6 border-b border-charcoal-200 pb-2">9. Contact Us</h2>
           <p className="text-charcoal-700 leading-relaxed">If you have any questions about these Terms, please contact us:</p>
           <ul className="list-disc list-inside space-y-2 text-charcoal-700 ml-4">
             <li>By email: <a href="mailto:support@alignrfp.com" className="text-primary-600 hover:text-primary-700 underline transition-colors duration-200">support@alignrfp.com</a></li>

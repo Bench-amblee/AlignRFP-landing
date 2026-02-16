@@ -4,14 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        // AlignRFP Brand Colors
         primary: {
           50: '#e6f0f9',
           100: '#cce1f3',
           200: '#99c3e7',
           300: '#66a5db',
           400: '#3387cf',
-          500: '#1B365D', // Main deep professional blue
+          500: '#1B365D',
           600: '#162e4f',
           700: '#122641',
           800: '#0d1e33',
@@ -23,7 +22,7 @@ export default {
           200: '#e5e7eb',
           300: '#d1d5db',
           400: '#9ca3af',
-          500: '#6B7280', // Main charcoal
+          500: '#6B7280',
           600: '#4b5563',
           700: '#374151',
           800: '#1f2937',
@@ -35,13 +34,12 @@ export default {
           200: '#a7f3d0',
           300: '#6ee7b7',
           400: '#34d399',
-          500: '#10B981', // Main success green
+          500: '#10B981',
           600: '#059669',
           700: '#047857',
           800: '#065f46',
           900: '#064e3b',
         },
-        // Keep some semantic colors for alerts/warnings
         warning: {
           50: '#fffbeb',
           100: '#fef3c7',
@@ -65,46 +63,13 @@ export default {
           700: '#b91c1c',
           800: '#991b1b',
           900: '#7f1d1d',
-        }
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
-        'medium': '0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 25px -5px rgba(0, 0, 0, 0.04)',
-        'strong': '0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 20px 25px -5px rgba(0, 0, 0, 0.04)',
-      },
-      borderRadius: {
-        'xl': '1rem',
-        '2xl': '1.5rem',
-      },
-      animation: {
-        'slide-up': 'slideUp 0.6s ease-out',
-        'bounce-in': 'bounceIn 0.8s ease-out',
-        'float': 'float 3s ease-in-out infinite',
-        'pulse-slow': 'pulse 3s ease-in-out infinite',
-        'gradient': 'gradient 6s ease infinite',
-      },
-      keyframes: {
-        slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(30px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        bounceIn: {
-          '0%': { opacity: '0', transform: 'scale(0.3)' },
-          '50%': { opacity: '1', transform: 'scale(1.05)' },
-          '70%': { transform: 'scale(0.9)' },
-          '100%': { opacity: '1', transform: 'scale(1)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
-        gradient: {
-          '0%, 100%': { 'background-position': '0% 50%' },
-          '50%': { 'background-position': '100% 50%' },
-        },
       },
     },
   },

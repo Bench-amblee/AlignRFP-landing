@@ -5,20 +5,20 @@ import logo from '../assets/alignRFP_logo7.svg';
 
 const PrivacyPolicy: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-white">
       {/* Navbar */}
-      <nav className="bg-white shadow-soft py-4">
+      <nav className="bg-white border-b border-charcoal-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center text-2xl font-bold no-underline whitespace-nowrap">
-              <img src={logo} alt="AlignRFP logo" className="h-8 w-8 mr-2" />
-              <span className="font-sans text-charcoal-900">AlignRFP</span>
+          <div className="flex items-center justify-between h-16">
+            <Link to="/" className="flex items-center no-underline whitespace-nowrap">
+              <img src={logo} alt="AlignRFP" className="h-8 w-8 mr-2" />
+              <span className="text-2xl font-bold text-charcoal-900">AlignRFP</span>
             </Link>
             <Link
               to="/"
-              className="flex items-center gap-2 text-charcoal-600 hover:text-primary-500 transition-colors duration-200"
+              className="flex items-center gap-2 text-sm text-charcoal-500 hover:text-charcoal-900 font-medium transition-colors"
             >
-              <ArrowLeft size={20} />
+              <ArrowLeft size={16} />
               Back to Home
             </Link>
           </div>
@@ -27,11 +27,11 @@ const PrivacyPolicy: React.FC = () => {
 
       <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <header className="mb-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-charcoal-900 tracking-tight mb-4">Privacy Policy</h1>
-          <p className="text-lg text-charcoal-600">Last updated: February 15, 2026</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-charcoal-900 tracking-tight mb-4">Privacy Policy</h1>
+          <p className="text-sm text-charcoal-500">Last updated: February 15, 2026</p>
         </header>
 
-        <div className="bg-white shadow-strong rounded-2xl p-8 md:p-12 prose prose-lg prose-charcoal max-w-none">
+        <div className="bg-white border border-charcoal-200 rounded-lg p-8 md:p-12 prose prose-lg prose-charcoal max-w-none">
           <p className="text-charcoal-700 leading-relaxed">
             AlignRFP ("us", "we", or "our") operates the AlignRFP website and application (the "Service"). This Privacy Policy informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
           </p>

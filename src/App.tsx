@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Bot, Shield, Zap, MessageSquare, CheckCircle, ArrowRight, FileText, PieChart, Users, Brain, Clock, Edit, Sparkle, Sparkles } from 'lucide-react';
+import { Zap, MessageSquare, CheckCircle, ArrowRight, FileText, Edit, Database, Send } from 'lucide-react';
 import logo from '../assets/alignRFP_logo7.svg';
 import PrivacyPolicy from './PrivacyPolicy';
 import TermsOfService from './TermsOfService';
@@ -102,13 +102,13 @@ function MainLayout() {
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary-600/20 to-success-600/20 rounded-3xl blur-3xl opacity-30 animate-pulse"></div>
                 <h1 className="relative text-5xl md:text-6xl font-bold text-charcoal-900 mb-10 leading-tight animate-slide-up">
-                  Transform Your RFP Process with
-                  <span className="bg-gradient-to-r from-success-600 to-success-800 bg-clip-text text-transparent"> AI-Powered </span>
-                  Proposals
+                  Proposal Management for
+                  <span className="bg-gradient-to-r from-success-600 to-success-800 bg-clip-text text-transparent"> Modern </span>
+                  Teams
                 </h1>
               </div>
               <p className="text-xl md:text-2xl text-charcoal-600 mb-16 leading-relaxed max-w-4xl mx-auto animate-slide-up">
-                Create winning proposals in minutes, not hours. Our AI-powered platform analyzes RFPs, generates tailored responses, and helps you create consistent, client-ready proposals.
+                Analyze RFPs, organize your knowledge base, and deliver winning proposals — all in one workspace.
               </p>
 
               {/* Email Collection */}
@@ -120,7 +120,7 @@ function MainLayout() {
                       name="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email for early access"
+                      placeholder="Enter your email to get started"
                       className="flex-1 px-4 py-3 rounded-xl border border-charcoal-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-charcoal-900"
                       required
                     />
@@ -129,7 +129,7 @@ function MainLayout() {
                       disabled={submitting}
                       className="px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-medium hover:shadow-strong transform hover:scale-105"
                     >
-                      {submitting ? 'Submitting...' : 'Join Waitlist'}
+                      {submitting ? 'Submitting...' : 'Get Early Access'}
                       {!submitting && <ArrowRight size={20} />}
                     </button>
                   </form>
@@ -137,7 +137,7 @@ function MainLayout() {
                   <div className="p-4 bg-success-50 rounded-xl border border-success-200 shadow-soft">
                     <p className="text-success-700 flex items-center justify-center gap-2">
                       <CheckCircle size={20} />
-                      Thanks! We'll notify you when we launch.
+                      Thanks! We'll be in touch soon.
                     </p>
                   </div>
                 )}
@@ -162,28 +162,34 @@ function MainLayout() {
               </h2>
             </div>
             <p className="text-xl text-charcoal-600 mt-6 max-w-3xl mx-auto">
-              Three simple steps to transform your RFP process and win more contracts
+              A streamlined workflow from RFP intake to proposal delivery
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 relative">
-            <ProcessStep 
-              number=""
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative">
+            <ProcessStep
+              number="1"
+              icon={<Database className="h-12 w-12 text-white" />}
+              title="Set Up Your Knowledge Base"
+              description="Add your company details, past proposals, differentiators, and capabilities. AlignRFP organizes your institutional knowledge for consistent, reusable content."
+            />
+            <ProcessStep
+              number="2"
               icon={<FileText className="h-12 w-12 text-white" />}
-              title="Upload Your RFP"
-              description="Simply upload your RFP document in any common format. Our AI will analyze the requirements, structure, and key components with lightning speed."
+              title="Upload & Analyze RFP"
+              description="Upload any RFP document and get a structured breakdown of requirements, evaluation criteria, and key deliverables."
             />
-            <ProcessStep 
-              number=""
-              icon={<Brain className="h-12 w-12 text-white" />}
-              title="Add Company Details"
-              description="Provide your company details and watch our smart AI match your tone, highlight your experience, and showcase your unique strengths."
+            <ProcessStep
+              number="3"
+              icon={<Edit className="h-12 w-12 text-white" />}
+              title="Build & Manage Proposal"
+              description="Draft responses using your knowledge base, edit with the built-in editor, and manage your proposal from start to finish."
             />
-            <ProcessStep 
-              number=""
-              icon={<CheckCircle className="h-12 w-12 text-white" />}
-              title="Edit & Export"
-              description="Fine-tune your response with our intuitive editor, make it perfect, and export as a professional PDF ready to win that contract."
+            <ProcessStep
+              number="4"
+              icon={<Send className="h-12 w-12 text-white" />}
+              title="Export & Deliver"
+              description="Export polished, submission-ready proposals as PDF or DOCX — formatted and ready to send."
             />
           </div>
         </div>
@@ -200,18 +206,18 @@ function MainLayout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Built for Fast-Moving Teams
+              Results That Speak for Themselves
             </h2>
             <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto">
-              Respond to RFPs faster and spend less time copy and pasting old content. Our AI-powered platform helps you create winning proposals in minutes.
+              Teams using AlignRFP streamline their proposal workflow and reclaim hours of manual effort each week.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-            <StatCard value="80%" label="Time Saved" description="Average reduction in proposal creation time" />
-            <StatCard value="8+" label="Hours" description="Time saved for each proposal" />
-            <StatCard value="1-Click" label="Access" description="Manage your past proposals, differentiators, and skills" />
-            <StatCard value="100%" label="Private" description="Your data is encrypted, never shared, and always under your control" />
+            <StatCard value="Up to 70%" label="Faster Proposals" description="Reduction in proposal preparation time" />
+            <StatCard value="8+ hrs" label="Saved Per Proposal" description="Less time on formatting, searching, and rewriting" />
+            <StatCard value="Centralized" label="Knowledge Base" description="One place for past proposals, differentiators, and capabilities" />
+            <StatCard value="100%" label="Your Data" description="Encrypted, private, and always under your control" />
           </div>
         </div>
       </div>
@@ -224,44 +230,34 @@ function MainLayout() {
             <div className="relative inline-block">
               <div className="absolute -inset-4 bg-gradient-to-r from-primary-600/20 to-success-600/20 rounded-2xl blur-2xl opacity-50 animate-pulse"></div>
               <h2 className="relative text-4xl md:text-5xl font-bold text-charcoal-900 mb-6">
-                Why Choose AlignRFP?
+                Everything You Need to Win More Bids
               </h2>
             </div>
             <p className="text-xl md:text-2xl text-charcoal-600 max-w-4xl mx-auto leading-relaxed">
-              Save time, improve quality, and win more contracts with our AI-powered RFP response platform.
+              A complete platform for RFP analysis, proposal management, and team efficiency.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <FeatureCard
-              icon={<Clock className="h-10 w-10 text-primary-500" />}
-              title="Save 80% of Your Time"
-              description="Turn weeks of manual work into hours. Our AI analyzes RFPs and generates tailored responses in minutes."
+              icon={<FileText className="h-10 w-10 text-primary-500" />}
+              title="RFP Analysis & Readiness"
+              description="Upload RFPs and get a structured breakdown of requirements, scope, and evaluation criteria — so you know exactly what's needed before you start writing."
             />
             <FeatureCard
-              icon={<Sparkles className="h-10 w-10 text-success-500" />}
-              title="Smart AI Personalization"
-              description="Our AI learns your company's voice, experience, and strengths to create responses that sound authentically yours."
+              icon={<Database className="h-10 w-10 text-success-500" />}
+              title="Knowledge Base & Reuse"
+              description="Centralize your company's capabilities, past proposals, and differentiators. Reuse proven content across proposals for speed and consistency."
             />
             <FeatureCard
-              icon={<CheckCircle className="h-10 w-10 text-primary-500" />}
-              title="Professional Results"
-              description="Generate polished, client-ready proposals that highlight your expertise and increase your win rate."
+              icon={<Edit className="h-10 w-10 text-primary-500" />}
+              title="Proposal Builder & Editor"
+              description="Build and refine proposals with a structured editor. Manage sections, collaborate on responses, and keep everything organized in one place."
             />
             <FeatureCard
-              icon={<FileText className="h-10 w-10 text-success-500" />}
-              title="Multiple Formats"
-              description="Support for PDF, Word, and text files. Export your responses as professional PDFs ready for submission."
-            />
-            <FeatureCard
-              icon={<Brain className="h-10 w-10 text-primary-500" />}
-              title="Knowledge Base"
-              description="Build a knowledge base of your company's capabilities, past proposals, and expertise for consistent responses."
-            />
-            <FeatureCard
-              icon={<Edit className="h-10 w-10 text-success-500" />}
-              title="Full Control"
-              description="Edit, customize, and perfect every response with our intuitive editor before sending to clients."
+              icon={<Send className="h-10 w-10 text-success-500" />}
+              title="Export & Submission"
+              description="Export polished, client-ready proposals as PDF or DOCX. Formatted, professional, and ready to submit."
             />
           </div>
         </div>
@@ -270,37 +266,37 @@ function MainLayout() {
       {/* Knowledge Base Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="bg-white rounded-2xl p-8 md:p-12 shadow-strong">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-charcoal-900 mb-8">Intelligent Knowledge Base That Grows With You</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-charcoal-900 mb-8">Your Institutional Knowledge, Centralized</h2>
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-6">
               <MemoryFeature
                 icon={<MessageSquare className="text-primary-500" size={20} />}
-                title="Remembers Your Company Voice"
-                description="AlignRFP learns your unique company voice and messaging patterns, ensuring every response feels authentically yours."
+                title="Consistent Company Voice"
+                description="Maintain a unified tone and messaging across every proposal by storing approved language and writing samples."
               />
               <MemoryFeature
                 icon={<Zap className="text-primary-500" size={20} />}
-                title="Stores Your Differentiators"
-                description="The platform maintains a database of your key differentiators and unique selling points, highlighting them strategically in responses."
+                title="Differentiators at Your Fingertips"
+                description="Keep your unique selling points, competitive advantages, and key qualifications organized and ready to deploy."
               />
               <MemoryFeature
                 icon={<FileText className="text-primary-500" size={20} />}
-                title="Proposal History"
-                description="AlignRFP remembers all your past proposals, making it easy to reference previous successful responses and adapt them for new opportunities."
+                title="Proposal History & Reference"
+                description="Access past proposals to reference successful responses, track what's been submitted, and build on proven content."
               />
             </div>
-            
+
             <div className="bg-gradient-to-br from-primary-50 to-success-50 rounded-xl p-6 space-y-4">
               <h3 className="text-xl font-semibold text-charcoal-900">Your Knowledge Base</h3>
-              <p className="text-charcoal-600">Our intelligent system creates a comprehensive knowledge base specifically for your organization:</p>
+              <p className="text-charcoal-600">Build a centralized repository of your organization's proposal assets:</p>
               <ul className="space-y-3">
-                <MemoryItem text="Writing samples that reflect your voice" />
-                <MemoryItem text="Previous proposals and success stories" />
-                <MemoryItem text="Differentiators; what makes you stand out" />
-                <MemoryItem text="Your unique skills and offerings" />
-                <MemoryItem text="Common response patterns and frameworks" />
+                <MemoryItem text="Approved writing samples and templates" />
+                <MemoryItem text="Past proposals and winning responses" />
+                <MemoryItem text="Key differentiators and competitive positioning" />
+                <MemoryItem text="Team capabilities and certifications" />
+                <MemoryItem text="Reusable response frameworks" />
               </ul>
-              <p className="text-charcoal-700 font-medium">The system gets smarter with every file you process, continuously improving response quality and relevance.</p>
+              <p className="text-charcoal-700 font-medium">The more you use AlignRFP, the stronger your knowledge base becomes — giving your team a compounding advantage over time.</p>
             </div>
           </div>
         </div>
@@ -313,11 +309,11 @@ function MainLayout() {
             <div className="relative inline-block">
               <div className="absolute -inset-4 bg-gradient-to-r from-primary-600/20 to-success-600/20 rounded-2xl blur-2xl opacity-50 animate-pulse"></div>
               <h2 className="relative text-4xl md:text-5xl font-bold text-charcoal-900 mb-6">
-                Choose Your Plan
+                Simple, Transparent Pricing
               </h2>
             </div>
             <p className="text-xl text-charcoal-600 max-w-3xl mx-auto mb-8">
-              Select the perfect plan for your business needs
+              Plans that scale with your proposal workflow
             </p>
             
             <PricingToggle isAnnual={isAnnual} setIsAnnual={setIsAnnual} />
@@ -332,25 +328,25 @@ function MainLayout() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-charcoal-900 mb-12">Frequently Asked Questions</h2>
           <div className="space-y-6">
-            <FAQItem 
-              question="What makes AlignRFP different from other RFP automation tools?"
-              answer="AlignRFP is built for personalization at scale. Unlike generic AI tools, we learn your company's tone, strengths, and past responses to create tailored answers that feel human, not templated."
+            <FAQItem
+              question="How is AlignRFP different from other proposal tools?"
+              answer="AlignRFP combines RFP analysis, a centralized knowledge base, and a structured proposal editor in one platform. Instead of copy-pasting between tools, you manage your entire proposal workflow — from RFP intake to final delivery — in a single workspace."
             />
-            <FAQItem 
-              question="How does AlignRFP ensure accuracy in responses?"
-              answer="AlignRFP combines advanced AI with your company's historical data to ensure responses are accurate and aligned with your voice. Our quality checks verify technical accuracy and compliance with RFP requirements."
+            <FAQItem
+              question="How does AlignRFP help with RFP analysis?"
+              answer="When you upload an RFP, AlignRFP breaks it down into structured requirements, evaluation criteria, and deliverables. This gives your team a clear picture of what's needed before you start writing."
             />
-            <FAQItem 
-              question="Is my company data secure on the platform?"
-              answer="Absolutely. We implement bank-grade encryption and security protocols. Your data is never shared, and you maintain complete ownership of all content generated on our platform."
+            <FAQItem
+              question="Is my company data secure?"
+              answer="Yes. We use bank-grade encryption and strict access controls. Your data is never shared with third parties, and you maintain full ownership of all content on the platform."
             />
             <FAQItem
               question="What does 'active proposal' mean?"
               answer="An active proposal is one that is currently in progress — you can generate responses, edit content, and export from it. Once you're done, you can mark a proposal as complete, at which point it becomes view-only. Completed proposals still live on your account for reference, they just don't count toward your active proposal limit."
             />
             <FAQItem
-              question="How much time can AlignRFP save my team?"
-              answer="Most companies report saving 50-70% of the time typically spent on RFP responses. Teams that previously spent 40+ hours on complex RFPs now complete them in 10-15 hours."
+              question="What types of teams use AlignRFP?"
+              answer="AlignRFP is built for consultants, professional services firms, and any team that regularly responds to RFPs or builds proposals. Whether you're a solo consultant or a growing firm, the platform scales with your needs."
             />
           </div>
         </div>
@@ -359,8 +355,8 @@ function MainLayout() {
       {/* Final CTA */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="bg-gradient-to-r from-primary-500 to-success-500 rounded-2xl p-12 text-center text-white shadow-strong">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to transform your RFP process?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">Join the waitlist today and be among the first to experience the power of AI-generated RFP responses.</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Simplify your proposal process</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">Get early access to a smarter way to manage RFPs, organize your knowledge, and deliver winning proposals.</p>
           {!submitted ? (
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-lg mx-auto">
               <input
@@ -368,7 +364,7 @@ function MainLayout() {
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email for early access"
+                placeholder="Enter your email to get started"
                 className="flex-1 px-4 py-3 rounded-xl text-charcoal-900 border-none focus:outline-none focus:ring-2 focus:ring-white"
                 required
               />
@@ -377,7 +373,7 @@ function MainLayout() {
                 disabled={submitting}
                 className="px-6 py-3 bg-white text-primary-600 hover:bg-charcoal-50 rounded-xl font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
               >
-                {submitting ? 'Submitting...' : 'Join Waitlist'}
+                {submitting ? 'Submitting...' : 'Get Early Access'}
                 {!submitting && <ArrowRight size={20} />}
               </button>
             </form>
@@ -385,7 +381,7 @@ function MainLayout() {
             <div className="p-4 bg-white/20 backdrop-blur-sm rounded-xl max-w-lg mx-auto">
               <p className="text-white flex items-center justify-center gap-2">
                 <CheckCircle size={20} />
-                Thanks! We'll notify you when we launch.
+                Thanks! We'll be in touch soon.
               </p>
             </div>
           )}
@@ -670,12 +666,12 @@ function PricingCards({ isAnnual }: PricingCardsProps) {
     {
       title: "AlignRFP Starter",
       monthlyPrice: 99,
-      description: "Perfect for individual consultants and small teams",
+      description: "For independent consultants managing their proposal workflow",
       features: [
-        "10 active proposals per month (Up to 100 responses)",
-        "AI-powered content generation",
-        "Response editing and export",
-        "Knowledge base for personalization",
+        "10 active proposals per month",
+        "RFP analysis & requirement breakdown",
+        "Proposal editor & export",
+        "Knowledge base (up to 50 documents)",
         "Google Docs integration",
         "PDF & DOCX export"
       ],
@@ -684,27 +680,27 @@ function PricingCards({ isAnnual }: PricingCardsProps) {
     {
       title: "AlignRFP Pro",
       monthlyPrice: 299,
-      description: "For consulting firms and growing teams",
+      description: "For consulting firms scaling their proposal operations",
       features: [
-        "50 active proposals per month (Up to 1000 responses)",
+        "50 active proposals per month",
         "Everything in Starter",
         "Priority support",
-        "Advanced knowledge base",
+        "Advanced knowledge base (unlimited documents)",
       ],
       isPopular: true
     },
     {
       title: "AlignRFP Enterprise",
       monthlyPrice: null,
-      description: "For large organizations with custom needs",
+      description: "For organizations with custom compliance and integration needs",
       features: [
-        "Unlimited active proposals and responses",
+        "Unlimited proposals",
         "Everything in Pro",
-        "Custom AI model training",
+        "Custom integrations & API access",
         "Advanced team collaboration",
-        "White-label solutions",
-        "API access & integrations",
-        "Custom compliance features",
+        "White-label options",
+        "Custom compliance & security controls",
+        "Dedicated account management",
         "24/7 premium support"
       ],
       isPopular: false

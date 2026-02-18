@@ -8,6 +8,7 @@ import kbScreenshot from '../assets/KB2_ex.png';
 import PrivacyPolicy from './PrivacyPolicy';
 import TermsOfService from './TermsOfService';
 import ContactUs from './ContactUs';
+import { Analytics } from "@vercel/analytics/react"
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -917,3 +918,4 @@ function App() {
 }
 
 export default App;
+``

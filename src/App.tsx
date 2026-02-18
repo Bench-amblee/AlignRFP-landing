@@ -913,9 +913,9 @@ function App() {
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/contact-us" element={<ContactUs />} />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
 
 export default App;
-``

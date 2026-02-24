@@ -117,18 +117,20 @@ const ContactUs: React.FC = () => {
           {/* Bottom CTA */}
           <div className="mt-16 bg-gradient-to-r from-primary-50 to-success-50 border border-charcoal-200 rounded-lg p-8 text-center">
             <h3 className="text-lg font-semibold text-charcoal-900 mb-2">
-              Want to stay updated on AlignRFP's progress?
+              Ready to get started?
             </h3>
             <p className="text-sm text-charcoal-500 mb-5">
-              Join our waitlist to be the first to know when we launch new features.
+              Try AlignRFP free — no credit card required.
             </p>
-            <Link
-              to="/"
+            <a
+              href="https://app.alignrfp.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-success-600 text-white text-sm font-medium rounded hover:bg-success-700 transition-colors"
             >
-              Join the Waitlist
+              Try It Free
               <ArrowLeft className="rotate-180" size={14} />
-            </Link>
+            </a>
           </div>
         </div>
       </section>

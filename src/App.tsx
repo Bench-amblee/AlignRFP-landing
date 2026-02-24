@@ -21,38 +21,8 @@ function ScrollToTop() {
 }
 
 function MainLayout() {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState('');
   const [isAnnual, setIsAnnual] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setError('');
-
-    try {
-      const response = await fetch("https://formspree.io/f/moveprwo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      if (response.ok) {
-        setSubmitted(true);
-        setEmail('');
-      } else {
-        const data = await response.json();
-        throw new Error(data.error || 'Something went wrong. Please try again.');
-      }
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please try again.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -78,10 +48,12 @@ function MainLayout() {
                 Contact Us
               </Link>
               <a
-                href="#get-access"
+                href="https://app.alignrfp.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-4 py-2 bg-primary-500 text-white text-sm font-medium rounded hover:bg-primary-600 transition-colors"
               >
-                Request Access
+                Try It Free
               </a>
             </div>
             <button
@@ -111,11 +83,13 @@ function MainLayout() {
                 Contact Us
               </Link>
               <a
-                href="#get-access"
+                href="https://app.alignrfp.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-4 py-3 bg-primary-500 text-white text-sm font-medium rounded text-center hover:bg-primary-600 transition-colors mt-2"
               >
-                Request Access
+                Try It Free
               </a>
             </div>
           </div>
@@ -200,36 +174,22 @@ function MainLayout() {
             <HeroBadge icon={<Send size={14} />} label="Export & Deliver" accent="success" />
           </div>
 
-          <div id="get-access" className="mt-10 max-w-md mx-auto">
-            {!submitted ? (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  name="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your work email"
-                  className="flex-1 px-4 py-3 border border-charcoal-300 rounded text-charcoal-900 text-sm focus:outline-none focus:ring-2 focus:ring-success-500 focus:border-transparent bg-white"
-                  required
-                />
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="px-6 py-3 bg-success-600 text-white text-sm font-medium rounded hover:bg-success-700 transition-colors flex items-center justify-center gap-2"
-                >
-                  {submitting ? 'Submitting...' : 'Get Early Access'}
-                  {!submitting && <ArrowRight size={16} />}
-                </button>
-              </form>
-            ) : (
-              <div className="p-4 bg-success-50 border border-success-200 rounded">
-                <p className="text-success-700 text-sm flex items-center justify-center gap-2">
-                  <CheckCircle size={16} />
-                  Thanks! We'll be in touch soon.
-                </p>
-              </div>
-            )}
-            {error && <p className="mt-2 text-danger-500 text-sm">{error}</p>}
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="https://app.alignrfp.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 bg-success-600 text-white text-sm font-medium rounded hover:bg-success-700 transition-colors flex items-center gap-2"
+            >
+              Try It Free
+              <ArrowRight size={16} />
+            </a>
+            <Link
+              to="/contact-us"
+              className="px-8 py-3 bg-white border border-charcoal-300 text-charcoal-700 text-sm font-medium rounded hover:bg-charcoal-50 transition-colors"
+            >
+              Book a Demo
+            </Link>
           </div>
           <p className="mt-4 text-xs text-charcoal-400">No credit card required. Start analyzing RFPs in minutes.</p>
         </div>
@@ -524,39 +484,28 @@ function MainLayout() {
       <section className="bg-gradient-to-r from-primary-600 to-primary-500 py-20">
         <FadeIn animation="fade" className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Simplify your proposal process
+            Ready to simplify your proposal process?
           </h2>
           <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
-            Get early access to a smarter way to manage RFPs, organize your knowledge, and deliver winning proposals.
+            Start managing RFPs, building your knowledge base, and delivering winning proposals — all in one workspace.
           </p>
-          {!submitted ? (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your work email"
-                className="flex-1 px-4 py-3 rounded text-charcoal-900 text-sm focus:outline-none focus:ring-2 focus:ring-white border-0"
-                required
-              />
-              <button
-                type="submit"
-                disabled={submitting}
-                className="px-6 py-3 bg-success-500 text-white text-sm font-medium rounded hover:bg-success-600 transition-colors flex items-center justify-center gap-2"
-              >
-                {submitting ? 'Submitting...' : 'Get Early Access'}
-                {!submitting && <ArrowRight size={16} />}
-              </button>
-            </form>
-          ) : (
-            <div className="p-4 bg-white/10 rounded max-w-md mx-auto">
-              <p className="text-white text-sm flex items-center justify-center gap-2">
-                <CheckCircle size={16} />
-                Thanks! We'll be in touch soon.
-              </p>
-            </div>
-          )}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="https://app.alignrfp.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 bg-white text-primary-600 text-sm font-semibold rounded hover:bg-charcoal-50 transition-colors flex items-center gap-2"
+            >
+              Try It Free
+              <ArrowRight size={16} />
+            </a>
+            <Link
+              to="/contact-us"
+              className="px-8 py-3 bg-transparent border border-white/50 text-white text-sm font-medium rounded hover:bg-white/10 transition-colors"
+            >
+              Contact Us for a Demo
+            </Link>
+          </div>
         </FadeIn>
       </section>
 
@@ -889,16 +838,27 @@ function PricingCard({ title, monthlyPrice, description, features, isPopular, is
         ))}
       </ul>
 
-      <Link
-        to="/contact-us"
-        className={`w-full py-3 text-sm font-medium rounded text-center block transition-colors ${
-          isPopular
-            ? 'bg-primary-500 text-white hover:bg-primary-600'
-            : 'bg-charcoal-100 text-charcoal-900 hover:bg-charcoal-200'
-        }`}
-      >
-        Get Started
-      </Link>
+      {monthlyPrice === null ? (
+        <Link
+          to="/contact-us"
+          className="w-full py-3 text-sm font-medium rounded text-center block transition-colors bg-charcoal-100 text-charcoal-900 hover:bg-charcoal-200"
+        >
+          Contact Us
+        </Link>
+      ) : (
+        <a
+          href="https://app.alignrfp.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`w-full py-3 text-sm font-medium rounded text-center block transition-colors ${
+            isPopular
+              ? 'bg-primary-500 text-white hover:bg-primary-600'
+              : 'bg-charcoal-100 text-charcoal-900 hover:bg-charcoal-200'
+          }`}
+        >
+          Try It Free
+        </a>
+      )}
     </div>
   );
 }

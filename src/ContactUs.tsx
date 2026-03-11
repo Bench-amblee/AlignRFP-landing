@@ -161,7 +161,7 @@ const ContactUs: React.FC = () => {
                               required
                               value={form.email}
                               onChange={handleChange}
-                              placeholder="you@yourfirm.com"
+                              placeholder="you@yourcompany.com"
                               className="w-full px-3 py-2.5 text-sm border border-charcoal-200 rounded text-charcoal-900 placeholder-charcoal-400 focus:outline-none focus:border-primary-400 focus:ring-1 focus:ring-primary-100 transition-colors"
                             />
                           </div>

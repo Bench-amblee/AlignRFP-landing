@@ -174,7 +174,7 @@ function MainLayout() {
                 />
               </svg>
             </span>{' '}
-            — all in one workspace.
+            - all in one workspace.
           </p>
 
           {/* Capability badges */}
@@ -498,14 +498,14 @@ function MainLayout() {
             Ready to simplify your proposal process?
           </h2>
           <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
-            Start managing RFPs, building your knowledge base, and delivering winning proposals — all in one workspace.
+            Start managing RFPs, building your knowledge base, and delivering winning proposals - all in one workspace.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="https://app.alignrfp.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3 bg-white text-primary-600 text-sm font-semibold rounded hover:bg-charcoal-50 transition-colors flex items-center gap-2"
+              className="px-8 py-3 bg-success-500 text-white text-sm font-semibold rounded hover:bg-success-600 transition-colors flex items-center gap-2"
             >
               Try It Free
               <ArrowRight size={16} />
@@ -516,6 +516,9 @@ function MainLayout() {
             >
               Contact Us for a Demo
             </Link>
+          </div>
+          <div className="mt-10 pt-8 border-t border-white/20">
+            <EmailSignupStrip />
           </div>
         </FadeIn>
       </section>
@@ -690,6 +693,56 @@ function KnowledgeFeature({ icon, title, description, accent = 'primary' }: {
   );
 }
 
+
+function EmailSignupStrip() {
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    await fetch('https://formspree.io/f/mqeypvbg', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, source: 'footer-strip' }),
+    });
+    setSubmitted(true);
+    setLoading(false);
+  };
+
+  if (submitted) {
+    return (
+      <div className="flex items-center justify-center gap-2 text-xs text-white/70">
+        <CheckCircle size={13} className="text-success-400 flex-shrink-0" />
+        You're on the list — we'll keep you posted on new features.
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <span className="text-base text-white/90 whitespace-nowrap">Not ready yet? Join our email list to stay updated on new features —</span>
+      <form onSubmit={handleSubmit} className="flex gap-2">
+        <input
+          type="email"
+          required
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="you@yourcompany.com"
+          className="px-3 py-1.5 text-sm border border-white/20 rounded text-charcoal-900 placeholder-charcoal-400 focus:outline-none focus:border-white/50 transition-colors bg-white w-56"
+        />
+        <button
+          type="submit"
+          disabled={loading}
+          className="px-3 py-1.5 bg-success-500 text-white text-sm font-medium rounded hover:bg-success-600 transition-colors whitespace-nowrap"
+        >
+          {loading ? 'Joining...' : 'Sign up'}
+        </button>
+      </form>
+    </div>
+  );
+}
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);

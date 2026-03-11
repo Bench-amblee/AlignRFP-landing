@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import posthog from 'posthog-js';
 import { CheckCircle, ArrowRight, FileText, Edit, Database, Send, Menu, X, MessageSquare, Zap, ChevronDown } from 'lucide-react';
 import logo from '../assets/alignRFP_logo7.svg';
 import wordLogo from '../assets/Microsoft_Office_Word_(2025–present).svg';
@@ -15,6 +16,16 @@ function ScrollToTop() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+function PostHogPageView() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    posthog.capture('$pageview');
   }, [pathname]);
 
   return null;
@@ -867,6 +878,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      <PostHogPageView />
       <Routes>
         <Route path="/" element={<MainLayout />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />

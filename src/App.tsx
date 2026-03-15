@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import posthog from 'posthog-js';
-import { CheckCircle, ArrowRight, FileText, Edit, Database, Send, Menu, X, MessageSquare, Zap, ChevronDown } from 'lucide-react';
+import { CheckCircle, ArrowRight, FileText, Edit, Database, Send, Menu, X, MessageSquare, Zap, ChevronDown, Clock, Search, Trophy, Pencil } from 'lucide-react';
 import logo from '../assets/alignRFP_logo7.svg';
 import wordLogo from '../assets/Microsoft_Office_Word_(2025–present).svg';
 import driveLogo from '../assets/Google_Drive_icon_(2020).svg';
@@ -9,6 +9,7 @@ import kbScreenshot from '../assets/KB2_ex.png';
 import PrivacyPolicy from './PrivacyPolicy';
 import TermsOfService from './TermsOfService';
 import ContactUs from './ContactUs';
+import Pricing from './Pricing';
 import { Analytics } from "@vercel/analytics/react"
 
 function ScrollToTop() {
@@ -32,7 +33,6 @@ function PostHogPageView() {
 }
 
 function MainLayout() {
-  const [isAnnual, setIsAnnual] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -49,9 +49,9 @@ function MainLayout() {
               <a href="#how-it-works" className="text-sm text-charcoal-600 hover:text-charcoal-900 font-medium transition-colors">
                 How it Works
               </a>
-              <a href="#pricing" className="text-sm text-charcoal-600 hover:text-charcoal-900 font-medium transition-colors">
+              <Link to="/pricing" className="text-sm text-charcoal-600 hover:text-charcoal-900 font-medium transition-colors">
                 Pricing
-              </a>
+              </Link>
               <a href="#faqs" className="text-sm text-charcoal-600 hover:text-charcoal-900 font-medium transition-colors">
                 FAQs
               </a>
@@ -84,9 +84,9 @@ function MainLayout() {
               <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-charcoal-600 hover:text-charcoal-900 font-medium py-3">
                 How it Works
               </a>
-              <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-charcoal-600 hover:text-charcoal-900 font-medium py-3">
+              <Link to="/pricing" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-charcoal-600 hover:text-charcoal-900 font-medium py-3">
                 Pricing
-              </a>
+              </Link>
               <a href="#faqs" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-charcoal-600 hover:text-charcoal-900 font-medium py-3">
                 FAQs
               </a>
@@ -133,7 +133,7 @@ function MainLayout() {
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-charcoal-900 leading-tight tracking-tight">
-            Proposal Management for{' '}
+            Proposal Management Built on{' '}
             <span className="relative inline-block">
               <svg
                 className="absolute -left-2 -right-2 -top-1 -bottom-1 w-[calc(100%+16px)] h-[calc(100%+8px)] pointer-events-none"
@@ -150,14 +150,13 @@ function MainLayout() {
                   className="highlighter-stroke"
                 />
               </svg>
-              <span className="relative z-10">Modern</span>
-            </span>{' '}
-            Teams
+              <span className="relative z-10">Your Best Work</span>
+            </span>
           </h1>
           <p className="mt-8 text-lg sm:text-xl text-charcoal-500 leading-relaxed max-w-3xl mx-auto">
-            Analyze RFPs, organize your knowledge base, and deliver{' '}
-            <span className="relative inline-block">
-              winning proposals
+            AlignRFP pulls from your team's past proposals and knowledge base to draft responses in minutes —{' '}
+            <span className="relative inline-block whitespace-nowrap">
+              not hours.
               <svg
                 className="absolute -bottom-1 left-0 w-full h-[6px] pointer-events-none"
                 viewBox="0 0 200 8"
@@ -174,16 +173,8 @@ function MainLayout() {
                 />
               </svg>
             </span>{' '}
-            - all in one workspace.
+            No more starting from scratch.
           </p>
-
-          {/* Capability badges */}
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <HeroBadge icon={<FileText size={14} />} label="RFP Analysis" accent="primary" />
-            <HeroBadge icon={<Database size={14} />} label="Knowledge Base" accent="success" />
-            <HeroBadge icon={<Edit size={14} />} label="Proposal Builder" accent="primary" />
-            <HeroBadge icon={<Send size={14} />} label="Export & Deliver" accent="success" />
-          </div>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
@@ -192,17 +183,85 @@ function MainLayout() {
               rel="noopener noreferrer"
               className="px-8 py-3 bg-success-600 text-white text-sm font-medium rounded hover:bg-success-700 transition-colors flex items-center gap-2"
             >
-              Try It Free
+              Start Your Free Trial
               <ArrowRight size={16} />
             </a>
             <Link
               to="/contact-us"
               className="px-8 py-3 bg-white border border-charcoal-300 text-charcoal-700 text-sm font-medium rounded hover:bg-charcoal-50 transition-colors"
             >
-              Book a Demo
+              Watch a Demo
             </Link>
           </div>
-          <p className="mt-4 text-xs text-charcoal-400">No credit card required. Start analyzing RFPs in minutes.</p>
+          <p className="mt-4 text-xs text-charcoal-400">No credit card required. Set up in under 5 minutes.</p>
+        </div>
+      </section>
+
+      {/* Sound Familiar? */}
+      <section className="bg-gradient-to-b from-white to-primary-50/40 py-20 border-t border-charcoal-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn animation="fade" className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold text-charcoal-900">Sound familiar?</h2>
+            <p className="mt-4 text-lg text-charcoal-500 max-w-2xl mx-auto">
+              Most teams we hear from have to deal with these issues every week.
+            </p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <FadeIn animation="left">
+              <PainCard
+                icon={<Search size={18} className="text-primary-500" />}
+                text="Digging through shared drives, old emails, and last year's proposals to find that one answer you know someone on your team already wrote"
+              />
+            </FadeIn>
+            <FadeIn delay={1} animation="right">
+              <PainCard
+                icon={<Pencil size={18} className="text-primary-500" />}
+                text="Checking for writing consistency and realizing two team members used ChatGPT, one wrote from scratch, and one copy-pasted from an old proposal (they left in an old client's name)"
+              />
+            </FadeIn>
+            <FadeIn animation="left">
+              <PainCard
+                icon={<Clock size={18} className="text-success-600" />}
+                text="Burning days on a single proposal when your team could be focused on the billable work that actually moves the needle - just to do it all again next week"
+                accent="success"
+              />
+            </FadeIn>
+            <FadeIn delay={1} animation="right">
+              <PainCard
+                icon={<Trophy size={18} className="text-success-600" />}
+                text="Watching a bid you were perfect for go to someone else. Not because you weren't qualified, but because the proposal didn't come together in time"
+                accent="success"
+              />
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Early User Feedback */}
+      <section className="bg-gradient-to-r from-primary-50/50 via-white to-success-50/50 py-14 border-t border-b border-charcoal-200">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-xs font-semibold text-charcoal-400 uppercase tracking-wider mb-8">What early users are telling us</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <FadeIn animation="fade">
+              <TestimonialCard
+                quote="I used to spend a full day just understanding RFP requirements. This does it in minutes."
+                role="IT Consultant"
+              />
+            </FadeIn>
+            <FadeIn delay={1} animation="fade">
+              <TestimonialCard
+                quote="Searching for past experience was so time consuming. Now I just click on what I want to include and it pulls it into the proposal. It's a game changer."
+                role="Sales Engineer"
+              />
+            </FadeIn>
+            <FadeIn delay={2} animation="fade">
+              <TestimonialCard
+                quote="We finally stopped rewriting the same answers. The knowledge base alone was worth it."
+                role="Nonprofit Director"
+              />
+            </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -212,7 +271,7 @@ function MainLayout() {
           <FadeIn animation="fade" className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-charcoal-900">How It Works</h2>
             <p className="mt-4 text-lg text-charcoal-500 max-w-2xl mx-auto">
-              A streamlined workflow from RFP intake to proposal delivery
+              Upload an RFP, pull from what you've already written, and deliver a polished proposal.
             </p>
           </FadeIn>
 
@@ -225,7 +284,7 @@ function MainLayout() {
                 <WorkflowStep
                   number="01"
                   title="Set Up Your Knowledge Base"
-                  description="Add your company details, past proposals, differentiators, and capabilities. AlignRFP organizes your institutional knowledge for consistent, reusable content."
+                  description="Upload your past proposals, capabilities, and writing samples. This becomes the foundation AlignRFP draws from every time you respond to a bid."
                 />
               </FadeIn>
               <FadeIn delay={1} animation="left">
@@ -239,14 +298,14 @@ function MainLayout() {
                 <WorkflowStep
                   number="03"
                   title="Build & Manage Proposal"
-                  description="Draft responses using your knowledge base, edit with the built-in editor, and manage your proposal from start to finish."
+                  description="Draft responses section by section, pulling from your knowledge base. Edit, rearrange, and refine until it's ready."
                 />
               </FadeIn>
               <FadeIn delay={3} animation="left">
                 <WorkflowStep
                   number="04"
                   title="Export & Deliver"
-                  description="Export polished, submission-ready proposals as PDF or DOCX — formatted and ready to send."
+                  description="Export as PDF or DOCX — formatted, professional, and ready to submit."
                 />
               </FadeIn>
             </div>
@@ -254,23 +313,23 @@ function MainLayout() {
         </div>
       </section>
 
-      {/* Stats */}
+      {/* Benefits */}
       <section className="bg-gradient-to-r from-primary-600 to-primary-500 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn animation="fade" className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold text-white">
-              Results That Speak for Themselves
+              Why Teams Switch to AlignRFP
             </h2>
             <p className="mt-4 text-lg text-white/80 max-w-3xl mx-auto">
-              Teams using AlignRFP streamline their proposal workflow and reclaim hours of manual effort each week.
+              Less busywork, more winning.
             </p>
           </FadeIn>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            <FadeIn animation="scale"><StatBlock value="Up to 70%" label="Faster Proposals" detail="Reduction in proposal preparation time" /></FadeIn>
-            <FadeIn delay={1} animation="scale"><StatBlock value="8+ hrs" label="Saved Per Proposal" detail="Less time on formatting, searching, and rewriting" /></FadeIn>
-            <FadeIn delay={2} animation="scale"><StatBlock value="Centralized" label="Knowledge Base" detail="One place for past proposals, differentiators, and capabilities" /></FadeIn>
-            <FadeIn delay={3} animation="scale"><StatBlock value="100%" label="Your Data" detail="Encrypted, private, and always under your control" /></FadeIn>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            <FadeIn animation="scale"><BenefitBlock title="Minutes, Not Hours" detail="RFP analysis that used to take a full afternoon, done while you grab coffee" /></FadeIn>
+            <FadeIn delay={1} animation="scale"><BenefitBlock title="Stop Rewriting" detail="Your skills and experience live in your knowledge base, ready to reuse on the next bid" /></FadeIn>
+            <FadeIn delay={2} animation="scale"><BenefitBlock title="One Source of Truth" detail="Past proposals, differentiators, and capabilities all in one searchable place" /></FadeIn>
+            <FadeIn delay={3} animation="scale"><BenefitBlock title="Secure Data" detail="Encrypted, private, and never shared with third parties" /></FadeIn>
           </div>
         </div>
       </section>
@@ -280,10 +339,10 @@ function MainLayout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-charcoal-900">
-              Everything You Need to Win More Bids
+              What's Inside
             </h2>
             <p className="mt-4 text-lg text-charcoal-500 max-w-3xl mx-auto">
-              A complete platform for RFP analysis, proposal management, and team efficiency.
+              Tools that work together so you spend less time on process and more time on substance.
             </p>
           </FadeIn>
 
@@ -293,7 +352,7 @@ function MainLayout() {
                 icon={<FileText size={18} className="text-primary-500" />}
                 label="Analysis"
                 title="RFP Analysis & Readiness"
-                description="Upload RFPs and get a structured breakdown of requirements, scope, and evaluation criteria — so you know exactly what's needed before you start writing."
+                description="Upload RFPs and get a breakdown of requirements, scope, and evaluation criteria, all before you start creating a response."
                 details={["Requirement extraction", "Evaluation criteria mapping", "Scope identification", "Readiness assessment"]}
               />
             </FadeIn>
@@ -302,8 +361,8 @@ function MainLayout() {
                 icon={<Database size={18} className="text-success-600" />}
                 label="Knowledge"
                 title="Knowledge Base & Reuse"
-                description="Centralize your company's capabilities, past proposals, and differentiators. Reuse proven content across proposals for speed and consistency."
-                details={["Document repository", "Content reuse", "Team capabilities", "Competitive positioning"]}
+                description="Store your past experience, skills, differentiators, and writing samples in one place. Next time you need them, they're already written."
+                details={["Knowledge repository", "Content reuse", "Team capabilities", "Competitive positioning"]}
                 accent="success"
               />
             </FadeIn>
@@ -311,8 +370,8 @@ function MainLayout() {
               <FeaturePanel
                 icon={<Edit size={18} className="text-primary-500" />}
                 label="Builder"
-                title="Proposal Builder & Editor"
-                description="Build and refine proposals with a structured editor. Manage sections, collaborate on responses, and keep everything organized in one place."
+                title="Response Builder & Editor"
+                description="Write, edit, and organize your response section by section. Pull in knowledge base content, tweak the language, and get it right."
                 details={["Section management", "Structured editing", "Response drafting", "Version tracking"]}
               />
             </FadeIn>
@@ -321,8 +380,8 @@ function MainLayout() {
                 icon={<Send size={18} className="text-success-600" />}
                 label="Export"
                 title="Export & Submission"
-                description="Export polished, client-ready proposals as PDF or DOCX. Formatted, professional, and ready to submit."
-                details={["PDF export", "DOCX export", "Custom formatting", "Submission-ready output"]}
+                description="When you're done, export to PDF, DOCX, HTML, or connect directly to Google Docs. Clean formatting. Ready for review."
+                details={["PDF export", "DOCX export", "Section editor", "Google Docs integration"]}
                 accent="success"
               />
             </FadeIn>
@@ -337,10 +396,10 @@ function MainLayout() {
           <div className="bg-white border border-charcoal-200 rounded-lg overflow-hidden">
             <div className="p-8 md:p-12">
               <h2 className="text-2xl sm:text-3xl font-bold text-charcoal-900 mb-2">
-                Your Institutional Knowledge, Centralized
+                Your Best Answers, Always Ready
               </h2>
               <p className="text-charcoal-500 mb-10">
-                Build a compounding advantage with every proposal you manage.
+                Every source you add makes the next response better. Your knowledge base grows with you.
               </p>
 
               <div className="grid md:grid-cols-2 gap-10 items-start">
@@ -348,18 +407,18 @@ function MainLayout() {
                   <KnowledgeFeature
                     icon={<MessageSquare size={16} className="text-primary-500" />}
                     title="Consistent Company Voice"
-                    description="Maintain a unified tone and messaging across every proposal by storing approved language and writing samples."
+                    description="Store your team's approved language and writing samples to avoid generic messaging."
                   />
                   <KnowledgeFeature
                     icon={<Zap size={16} className="text-success-600" />}
                     title="Differentiators at Your Fingertips"
-                    description="Keep your unique selling points, competitive advantages, and key qualifications organized and ready to deploy."
+                    description="Your strongest selling points and qualifications, organized and easy to pull into any response."
                     accent="success"
                   />
                   <KnowledgeFeature
                     icon={<FileText size={16} className="text-primary-500" />}
                     title="Proposal History & Reference"
-                    description="Access past proposals to reference successful responses, track what's been submitted, and build on proven content."
+                    description="Look back at what you've submitted before: what worked, what you wrote, and what you can reuse next time."
                   />
                 </div>
 
@@ -378,7 +437,7 @@ function MainLayout() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn animation="fade" className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold text-charcoal-900">
-              Seamlessly Fits Your Workflow
+              Works With What You Already Use
             </h2>
             <p className="mt-4 text-lg text-charcoal-500 max-w-2xl mx-auto">
               Build proposals in AlignRFP, then export to Google Drive or Microsoft Word for final editing and collaboration.
@@ -396,7 +455,7 @@ function MainLayout() {
                 <p className="text-xs text-charcoal-500 mt-1">Import your RFP document</p>
               </div>
 
-              <ArrowRight size={20} className="text-charcoal-300 flex-shrink-0 rotate-90 md:rotate-0" />
+              <ArrowRight size={20} className="text-primary-300 flex-shrink-0 rotate-90 md:rotate-0" />
 
               {/* Step 2: Build in AlignRFP */}
               <div className="bg-success-50 border-2 border-success-200 rounded-lg p-6 text-center w-full md:w-56">
@@ -407,7 +466,7 @@ function MainLayout() {
                 <p className="text-xs text-charcoal-500 mt-1">Draft with your knowledge base</p>
               </div>
 
-              <ArrowRight size={20} className="text-charcoal-300 flex-shrink-0 rotate-90 md:rotate-0" />
+              <ArrowRight size={20} className="text-primary-300 flex-shrink-0 rotate-90 md:rotate-0" />
 
               {/* Step 3: Export destinations */}
               <div className="flex flex-col gap-3 w-full md:w-56">
@@ -438,26 +497,6 @@ function MainLayout() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section id="pricing" className="bg-white py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold text-charcoal-900">
-              Simple, Transparent Pricing
-            </h2>
-            <p className="mt-4 text-lg text-charcoal-500 max-w-2xl mx-auto">
-              Plans that scale with your proposal workflow
-            </p>
-            <div className="mt-8">
-              <PricingToggle isAnnual={isAnnual} setIsAnnual={setIsAnnual} />
-            </div>
-          </FadeIn>
-          <FadeIn animation="scale">
-            <PricingCards isAnnual={isAnnual} />
-          </FadeIn>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section id="faqs" className="bg-charcoal-50 py-24 border-t border-b border-charcoal-200">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -469,25 +508,48 @@ function MainLayout() {
           <div>
             <FAQItem
               question="How is AlignRFP different from other proposal tools?"
-              answer="AlignRFP combines RFP analysis, a centralized knowledge base, and a structured proposal editor in one platform. Instead of copy-pasting between tools, you manage your entire proposal workflow — from RFP intake to final delivery — in a single workspace."
+              answer="Most teams piece together their proposal process across Word docs, shared drives, and email threads. AlignRFP puts it all in one place. The RFP summary, your past experience, and the proposal editor. No more copy-pasting between five tabs."
             />
             <FAQItem
               question="How does AlignRFP help with RFP analysis?"
-              answer="When you upload an RFP, AlignRFP breaks it down into structured requirements, evaluation criteria, and deliverables. This gives your team a clear picture of what's needed before you start writing."
+              answer="Upload the RFP document and AlignRFP pulls out the requirements, evaluation criteria, and deliverables. You get a clear checklist of what the client is actually asking for before you write a word."
             />
             <FAQItem
               question="Is my company data secure?"
-              answer="Yes. We use bank-grade encryption and strict access controls. Your data is never shared with third parties, and you maintain full ownership of all content on the platform."
+              answer="Yes. Everything is encrypted, access is tightly controlled, and we never share your data with anyone. Your content stays yours."
             />
             <FAQItem
-              question="What does 'active proposal' mean?"
-              answer="An active proposal is one that is currently in progress — you can generate responses, edit content, and export from it. Once you're done, you can mark a proposal as complete, at which point it becomes view-only. Completed proposals still live on your account for reference, they just don't count toward your active proposal limit."
+              question="Can I try AlignRFP for free?"
+              answer="Yes! Your first proposal is completely free! No credit card required. The free proposal includes all core features with a single document upload. After that, you can buy individual credits starting at $39 per proposal, or subscribe for the best value."
+            />
+            <FAQItem
+              question="How do credits and subscriptions work?"
+              answer="Pay-as-you-go credits never expire — buy them and use them whenever. Subscriptions give you a set number of proposals per month plus extras like bigger knowledge bases, team collaboration, and custom templates. Pick whatever fits how you work."
             />
             <FAQItem
               question="What types of teams use AlignRFP?"
-              answer="AlignRFP is built for consultants, professional services firms, and any team that regularly responds to RFPs or builds proposals. Whether you're a solo consultant or a growing firm, the platform scales with your needs."
+              answer="IT consultants, nonprofits applying for grants, research orgs, translation agencies, government contractors - really anyone who regularly responds to RFPs, RFQs, or RFIs. It works for solo consultants and growing teams alike."
             />
           </div>
+        </div>
+      </section>
+
+      {/* From the Founder */}
+      <section className="bg-gradient-to-b from-success-50/30 to-white py-16 border-t border-charcoal-200">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn animation="fade">
+            <div className="text-center">
+              <div className="w-10 h-1 bg-gradient-to-r from-primary-400 to-success-400 rounded-full mx-auto mb-6" />
+              <p className="text-sm font-semibold text-charcoal-400 uppercase tracking-wider mb-6">From the Founder</p>
+              <blockquote className="text-lg text-charcoal-700 leading-relaxed mb-6">
+                "AlignRFP is the tool I wish I had when I was responding to RFPs. I hope it helps you save time and win more work. We're a small team, we ship fast, and we genuinely want to hear from you."
+              </blockquote>
+              <div>
+                <span className="text-sm font-semibold text-charcoal-900">Ben</span>
+                <span className="text-sm text-charcoal-400 ml-2">Founder, AlignRFP</span>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -495,10 +557,14 @@ function MainLayout() {
       <section className="bg-gradient-to-r from-primary-600 to-primary-500 py-20">
         <FadeIn animation="fade" className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Ready to simplify your proposal process?
+            Ready to streamline your RFP responses?
           </h2>
-          <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
-            Start managing RFPs, building your knowledge base, and delivering winning proposals - all in one workspace.
+          <p className="text-lg text-white/80 mb-3 max-w-2xl mx-auto">
+            Upload your first RFP, build your knowledge base, and see the difference.
+          </p>
+          <p className="text-sm text-white/60 mb-10">
+            Your first proposal is free! Subscriptions and Pay-as-you-go plans available{' '}
+            <Link to="/pricing" className="text-white/80 underline hover:text-white transition-colors">View pricing</Link>
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
@@ -507,7 +573,7 @@ function MainLayout() {
               rel="noopener noreferrer"
               className="px-8 py-3 bg-success-500 text-white text-sm font-semibold rounded hover:bg-success-600 transition-colors flex items-center gap-2"
             >
-              Try It Free
+              Start Your Free Trial
               <ArrowRight size={16} />
             </a>
             <Link
@@ -524,26 +590,50 @@ function MainLayout() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-white py-10 border-t border-charcoal-200">
+      <footer className="bg-gradient-to-b from-charcoal-50 to-primary-50/30 py-14 border-t border-charcoal-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center mb-4 md:mb-0">
-              <img src={logo} alt="AlignRFP" className="h-6 w-6 mr-2" />
-              <span className="text-sm font-semibold text-charcoal-900">AlignRFP</span>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+            {/* Brand */}
+            <div className="col-span-2 md:col-span-1">
+              <div className="flex items-center mb-3">
+                <img src={logo} alt="AlignRFP" className="h-7 w-7 mr-2" />
+                <span className="text-lg font-bold text-charcoal-900">AlignRFP</span>
+              </div>
+              <p className="text-sm text-charcoal-500 leading-relaxed">
+                Proposal management built on your team's best work.
+              </p>
             </div>
-            <div className="flex space-x-6">
-              <Link to="/privacy-policy" className="text-sm text-charcoal-400 hover:text-charcoal-600 transition-colors">
-                Privacy Policy
-              </Link>
-              <Link to="/terms-of-service" className="text-sm text-charcoal-400 hover:text-charcoal-600 transition-colors">
-                Terms of Service
-              </Link>
-              <Link to="/contact-us" className="text-sm text-charcoal-400 hover:text-charcoal-600 transition-colors">
-                Contact Us
-              </Link>
+
+            {/* Product */}
+            <div>
+              <h4 className="text-sm font-semibold text-charcoal-900 mb-4">Product</h4>
+              <ul className="space-y-2.5">
+                <li><a href="#how-it-works" className="text-sm text-charcoal-500 hover:text-charcoal-700 transition-colors">How It Works</a></li>
+                <li><a href="#faqs" className="text-sm text-charcoal-500 hover:text-charcoal-700 transition-colors">FAQ</a></li>
+                <li><Link to="/pricing" className="text-sm text-charcoal-500 hover:text-charcoal-700 transition-colors">Pricing</Link></li>
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h4 className="text-sm font-semibold text-charcoal-900 mb-4">Company</h4>
+              <ul className="space-y-2.5">
+                <li><Link to="/contact-us" className="text-sm text-charcoal-500 hover:text-charcoal-700 transition-colors">Contact Us</Link></li>
+                <li><Link to="/privacy-policy" className="text-sm text-charcoal-500 hover:text-charcoal-700 transition-colors">Privacy Policy</Link></li>
+                <li><Link to="/terms-of-service" className="text-sm text-charcoal-500 hover:text-charcoal-700 transition-colors">Terms of Service</Link></li>
+              </ul>
+            </div>
+
+            {/* Connect */}
+            <div>
+              <h4 className="text-sm font-semibold text-charcoal-900 mb-4">Connect</h4>
+              <ul className="space-y-2.5">
+                <li><a href="mailto:hello@alignrfp.com" className="text-sm text-charcoal-500 hover:text-charcoal-700 transition-colors">hello@alignrfp.com</a></li>
+              </ul>
             </div>
           </div>
-          <div className="mt-6 text-center text-charcoal-400 text-xs">
+
+          <div className="pt-8 border-t border-charcoal-200 text-center text-charcoal-400 text-xs">
             &copy; {new Date().getFullYear()} AlignRFP. All rights reserved.
           </div>
         </div>
@@ -596,15 +686,29 @@ function FadeIn({ children, className = '', delay = 0, animation = 'up' }: {
   );
 }
 
-function HeroBadge({ icon, label, accent }: { icon: React.ReactNode; label: string; accent: 'primary' | 'success' }) {
-  const colors = accent === 'success'
-    ? 'bg-success-50 border-success-200 text-success-700'
-    : 'bg-primary-50 border-primary-200 text-primary-500';
+function TestimonialCard({ quote, name, role }: { quote: string; name?: string; role: string }) {
   return (
-    <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded border text-xs font-medium ${colors}`}>
-      {icon}
-      {label}
-    </span>
+    <div className="text-center bg-white rounded-lg p-6 border border-charcoal-100">
+      <div className="w-8 h-1 bg-gradient-to-r from-primary-400 to-success-400 rounded-full mx-auto mb-5" />
+      <p className="text-sm text-charcoal-600 leading-relaxed italic mb-4">"{quote}"</p>
+      <div>
+        {name && <span className="text-sm font-semibold text-charcoal-900">{name}</span>}
+        <span className={`text-xs text-charcoal-400 ${name ? 'ml-2' : ''}`}>{role}</span>
+      </div>
+    </div>
+  );
+}
+
+function PainCard({ icon, text, accent = 'primary' }: { icon: React.ReactNode; text: string; accent?: 'primary' | 'success' }) {
+  const borderColor = accent === 'success' ? 'border-l-success-400' : 'border-l-primary-400';
+  const iconBg = accent === 'success' ? 'bg-success-50 border-success-100' : 'bg-primary-50 border-primary-100';
+  return (
+    <div className={`flex items-start gap-4 bg-white border border-charcoal-200 ${borderColor} border-l-[3px] rounded-lg p-6 h-full`}>
+      <div className={`w-9 h-9 ${iconBg} border rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5`}>
+        {icon}
+      </div>
+      <p className="text-sm text-charcoal-600 leading-relaxed">{text}</p>
+    </div>
   );
 }
 
@@ -627,16 +731,15 @@ function WorkflowStep({ number, title, description }: {
   );
 }
 
-function StatBlock({ value, label, detail }: {
-  value: string;
-  label: string;
+function BenefitBlock({ title, detail }: {
+  title: string;
   detail: string;
 }) {
   return (
     <div className="text-center">
-      <div className="text-3xl sm:text-4xl font-bold text-white mb-1">{value}</div>
-      <div className="text-sm font-semibold text-white/90 mb-1">{label}</div>
-      <div className="text-xs text-white/60">{detail}</div>
+      <div className="w-8 h-0.5 bg-success-400/60 rounded-full mx-auto mb-4" />
+      <div className="text-xl sm:text-2xl font-bold text-white mb-2">{title}</div>
+      <div className="text-sm text-white/70 leading-relaxed">{detail}</div>
     </div>
   );
 }
@@ -766,167 +869,6 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   );
 }
 
-function PricingToggle({ isAnnual, setIsAnnual }: {
-  isAnnual: boolean;
-  setIsAnnual: (v: boolean) => void;
-}) {
-  return (
-    <div className="inline-flex items-center bg-charcoal-100 rounded p-1">
-      <button
-        onClick={() => setIsAnnual(false)}
-        className={`px-5 py-2 text-sm font-medium rounded transition-colors ${
-          !isAnnual ? 'bg-white text-charcoal-900 shadow-sm' : 'text-charcoal-500 hover:text-charcoal-700'
-        }`}
-      >
-        Monthly
-      </button>
-      <button
-        onClick={() => setIsAnnual(true)}
-        className={`px-5 py-2 text-sm font-medium rounded transition-colors relative ${
-          isAnnual ? 'bg-white text-charcoal-900 shadow-sm' : 'text-charcoal-500 hover:text-charcoal-700'
-        }`}
-      >
-        Annual
-        <span className="absolute -top-7 left-1/2 -translate-x-1/2 bg-success-600 text-white text-[10px] px-2 py-0.5 rounded whitespace-nowrap font-medium">
-          2 months free
-        </span>
-      </button>
-    </div>
-  );
-}
-
-function PricingCards({ isAnnual }: { isAnnual: boolean }) {
-  const plans = [
-    {
-      title: "Starter",
-      monthlyPrice: 99,
-      description: "For independent consultants managing their proposal workflow",
-      features: [
-        "10 active proposals per month",
-        "RFP analysis & requirement breakdown",
-        "Proposal editor & export",
-        "Knowledge base (up to 50 documents)",
-        "Google Drive integration",
-        "PDF & DOCX export",
-      ],
-      isPopular: false,
-    },
-    {
-      title: "Pro",
-      monthlyPrice: 299,
-      description: "For consulting firms scaling their proposal operations",
-      features: [
-        "50 active proposals per month",
-        "Everything in Starter",
-        "Priority support",
-        "Advanced knowledge base (unlimited documents)",
-      ],
-      isPopular: true,
-    },
-    {
-      title: "Enterprise",
-      monthlyPrice: null,
-      description: "For organizations with custom compliance and integration needs",
-      features: [
-        "Unlimited proposals",
-        "Everything in Pro",
-        "Custom integrations & API access",
-        "Advanced team collaboration",
-        "White-label options",
-        "Custom compliance & security controls",
-        "Dedicated account management",
-        "24/7 premium support",
-      ],
-      isPopular: false,
-    },
-  ];
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-      {plans.map((plan, i) => (
-        <PricingCard key={i} {...plan} isAnnual={isAnnual} />
-      ))}
-    </div>
-  );
-}
-
-function PricingCard({ title, monthlyPrice, description, features, isPopular, isAnnual }: {
-  title: string;
-  monthlyPrice: number | null;
-  description: string;
-  features: string[];
-  isPopular: boolean;
-  isAnnual: boolean;
-}) {
-  const price = monthlyPrice === null
-    ? "Contact Us"
-    : isAnnual
-      ? `$${monthlyPrice * 10}/year`
-      : `$${monthlyPrice}/month`;
-
-  const originalPrice = monthlyPrice && isAnnual ? `$${monthlyPrice * 12}/year` : null;
-
-  return (
-    <div className={`relative bg-white rounded-lg p-8 flex flex-col ${
-      isPopular ? 'border-2 border-primary-500 shadow-soft' : 'border border-charcoal-200'
-    }`}>
-      {isPopular && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-          <span className="bg-primary-500 text-white px-4 py-1 text-xs font-semibold rounded">
-            Most Popular
-          </span>
-        </div>
-      )}
-
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold text-charcoal-900 mb-1">{title}</h3>
-        <p className="text-sm text-charcoal-500">{description}</p>
-      </div>
-
-      <div className="mb-6">
-        <span className="text-3xl font-bold text-charcoal-900">{price}</span>
-        {originalPrice && (
-          <div className="flex items-center gap-2 mt-1">
-            <span className="text-sm text-charcoal-400 line-through">{originalPrice}</span>
-            <span className="text-xs bg-success-50 text-success-700 px-2 py-0.5 rounded font-medium">Save 17%</span>
-          </div>
-        )}
-      </div>
-
-      <ul className="space-y-3 mb-8 flex-grow">
-        {features.map((feature, i) => (
-          <li key={i} className="flex items-start gap-2.5 text-sm text-charcoal-600">
-            <CheckCircle size={16} className="text-success-500 flex-shrink-0 mt-0.5" />
-            {feature}
-          </li>
-        ))}
-      </ul>
-
-      {monthlyPrice === null ? (
-        <Link
-          to="/contact-us"
-          className="w-full py-3 text-sm font-medium rounded text-center block transition-colors bg-charcoal-100 text-charcoal-900 hover:bg-charcoal-200"
-        >
-          Contact Us
-        </Link>
-      ) : (
-        <a
-          href="https://app.alignrfp.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`w-full py-3 text-sm font-medium rounded text-center block transition-colors ${
-            isPopular
-              ? 'bg-primary-500 text-white hover:bg-primary-600'
-              : 'bg-charcoal-100 text-charcoal-900 hover:bg-charcoal-200'
-          }`}
-        >
-          Try It Free
-        </a>
-      )}
-    </div>
-  );
-}
-
 function App() {
   return (
     <Router>
@@ -936,6 +878,7 @@ function App() {
         <Route path="/" element={<MainLayout />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact-us" element={<ContactUs />} />
       </Routes>
       <Analytics />

@@ -10,6 +10,7 @@ import PrivacyPolicy from './PrivacyPolicy';
 import TermsOfService from './TermsOfService';
 import ContactUs from './ContactUs';
 import Pricing from './Pricing';
+import About from './About';
 import { Analytics } from "@vercel/analytics/react"
 
 function ScrollToTop() {
@@ -618,6 +619,7 @@ function MainLayout() {
             <div>
               <h4 className="text-sm font-semibold text-charcoal-900 mb-4">Company</h4>
               <ul className="space-y-2.5">
+                <li><Link to="/about" className="text-sm text-charcoal-500 hover:text-charcoal-700 transition-colors">About</Link></li>
                 <li><Link to="/contact-us" className="text-sm text-charcoal-500 hover:text-charcoal-700 transition-colors">Contact Us</Link></li>
                 <li><Link to="/privacy-policy" className="text-sm text-charcoal-500 hover:text-charcoal-700 transition-colors">Privacy Policy</Link></li>
                 <li><Link to="/terms-of-service" className="text-sm text-charcoal-500 hover:text-charcoal-700 transition-colors">Terms of Service</Link></li>
@@ -880,6 +882,7 @@ function App() {
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/about" element={<About />} />
       </Routes>
       <Analytics />
     </Router>

@@ -1,73 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-white text-charcoal-900 font-sans antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-cream text-stone-800;
   }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  /* Scroll-triggered animations */
-  .fade-in-hidden {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-
-  .fade-in-hidden.anim-left {
-    transform: translateX(-30px);
-  }
-
-  .fade-in-hidden.anim-right {
-    transform: translateX(30px);
-  }
-
-  .fade-in-hidden.anim-scale {
-    transform: scale(0.96);
-  }
-
-  .fade-in-hidden.anim-fade {
-    transform: none;
-  }
-
-  .fade-in-visible {
-    opacity: 1;
-    transform: none;
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-
-  .fade-in-delay-1 { transition-delay: 100ms; }
-  .fade-in-delay-2 { transition-delay: 200ms; }
-  .fade-in-delay-3 { transition-delay: 300ms; }
-
-  /* Hand-drawn highlighter / underline draw-in animation */
-  @keyframes draw {
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-
-  .highlighter-stroke {
-    stroke-dasharray: 300;
-    stroke-dashoffset: 300;
-    animation: draw 0.7s ease-out 0.4s forwards;
-  }
-
-  .underline-stroke {
-    stroke-dasharray: 300;
-    stroke-dashoffset: 300;
-    animation: draw 1.2s ease-out 1s forwards;
+  .tracking-tight-plus {
+    letter-spacing: -0.025em;
   }
 }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.paper-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 39px,
+    rgba(120, 113, 108, 0.25) 39px,
+    rgba(120, 113, 108, 0.25) 40px
+  );
+}
+

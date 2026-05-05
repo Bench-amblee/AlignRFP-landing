@@ -10,6 +10,12 @@ import About from './pages/About.jsx'
 import Privacy from './pages/Privacy.jsx'
 import Terms from './pages/Terms.jsx'
 
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
+
 const CALENDLY_URL = 'https://calendly.com/ben-alignrfp/alignrfp-consultation'
 const EMAIL = 'hello@alignrfp.com'
 const LINKEDIN_URL = 'https://www.linkedin.com/company/alignrfp'
@@ -135,6 +141,7 @@ function Footer() {
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="min-h-screen font-sans">
         <Nav />
         <main>

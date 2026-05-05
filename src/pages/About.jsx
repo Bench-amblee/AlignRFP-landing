@@ -1,4 +1,4 @@
-const CALENDLY_URL = 'https://calendly.com/YOUR_LINK_HERE'
+const CALENDLY_URL = 'https://calendly.com/ben-alignrfp/alignrfp-consultation'
 const EMAIL = 'hello@alignrfp.com'
 
 export default function About() {

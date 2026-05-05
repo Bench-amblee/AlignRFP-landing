@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useInView } from '../hooks/useInView.js'
 import { FiSearch, FiLayers, FiPackage } from 'react-icons/fi'
 
-const CALENDLY_URL = 'https://calendly.com/YOUR_LINK_HERE'
+const CALENDLY_URL = 'https://calendly.com/ben-alignrfp/alignrfp-consultation'
 
 function Hero() {
   return (
